@@ -1,0 +1,708 @@
+{
+  "meta": {
+    "count": "2303"
+  },
+  "data": [
+    {
+      "id": "653",
+      "name": {
+        "fi": "fake",
+        "en": "A. Tillander",
+        "sv": "A. Tillander",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "https://www.alexandertillander.fi/",
+      "modified_at": "2021-03-30T12:56:57.000Z",
+      "location": {
+        "lat": 60.168922424316406,
+        "lon": 24.94364356994629,
+        "address": {
+          "street_address": "Aleksanterinkatu 17",
+          "postal_code": "00100",
+          "locality": "Helsinki"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "Jewellery shop, also exhibitions.",
+        "images": [
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-10/14657520_1627162420917017_2082522418259513419_n.jpg?h=1555b8b2&itok=hLcepjKl",
+            "copyright_holder": "A. Tillander",
+            "license_type": {
+              "id": 1,
+              "name": "All rights reserved."
+            },
+            "media_id": "499cdef2-535b-4040-9479-66f72b9d2fa6"
+          }
+        ]
+      },
+      "tags": [
+        {
+          "id": "matko1:9",
+          "name": "SHOPPING"
+        },
+        {
+          "id": "matko2:72",
+          "name": "Jewellery"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": "10:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": "10:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": "10:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": "10:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": "10:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": "10:00:00",
+            "closes": "17:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "3027",
+      "name": {
+        "fi": "A.H.Records",
+        "en": "A.H.Records",
+        "sv": "A.H. Records",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "http://ahrecords.fi/",
+      "modified_at": "2021-03-30T12:59:13.000Z",
+      "location": {
+        "lat": 60.161014556884766,
+        "lon": 24.94142723083496,
+        "address": {
+          "street_address": "Fredrikinkatu 12",
+          "postal_code": "00120",
+          "locality": "Helsinki"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "A small record store specialized in used vinyl.",
+        "images": [
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-10/12645064_458627557665379_3453464369390787997_n.jpg?h=dec22bcf&itok=GPZ981oE",
+            "copyright_holder": "A.H. Records",
+            "license_type": {
+              "id": 1,
+              "name": "All rights reserved."
+            },
+            "media_id": "de767d4a-b34e-4cf8-8eb1-744c714fd041"
+          }
+        ]
+      },
+      "tags": [
+        {
+          "id": "matko1:9",
+          "name": "SHOPPING"
+        },
+        {
+          "id": "matko2:104",
+          "name": "RecordStore"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": "11:00:00",
+            "closes": "15:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "2257",
+      "name": {
+        "fi": "Aallonkoti Apartment Hotel",
+        "en": "Aallonkoti Apartment Hotel",
+        "sv": "Aallonkoti Apartment Hotel",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "http://www.aallonkoti.fi",
+      "modified_at": "2020-03-26T10:51:39.000Z",
+      "location": {
+        "lat": 60.176273345947266,
+        "lon": 24.9382381439209,
+        "address": {
+          "street_address": "Alvar Aallon katu 3 B",
+          "postal_code": "00100",
+          "locality": "Helsinki"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "The unique apartment hotel Aallonkoti of 18 elegantly finished apartments has been built in a great location with gorgeous views in the center of Helsinki. The apartments as well as other facilities of Aallonkoti offer a perfect base for work and relaxation.\r\n\r\nThe apartment sizes vary from compact studios to two-bedroom penthouses. The apartments have high-quality furniture and they are equipped to fit the needs of a home. Each of the apartments has its own kitchen, a spacious furnished terrace with a gorgeous view over the park, wireless internet connection and quality household appliances.",
+        "images": []
+      },
+      "tags": [
+        {
+          "id": "matko1:1",
+          "name": "ACCOMMODATION"
+        },
+        {
+          "id": "matko1:2",
+          "name": "MEETING PLACES"
+        },
+        {
+          "id": "matko2:12",
+          "name": "Apartment"
+        },
+        {
+          "id": "matko2:a-:AliPay",
+          "name": "AliPay"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "3424",
+      "name": {
+        "fi": "Aalto-yliopisto, Kauppakorkeakoulu",
+        "en": "Aalto University School of Business",
+        "sv": "Aalto-universitetet, Handelshögskolan",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "https://www.aalto.fi/fi/kauppakorkeakoulu",
+      "modified_at": "2019-03-05T13:59:21.000Z",
+      "location": {
+        "lat": 60.185977935791016,
+        "lon": 24.822364807128906,
+        "address": {
+          "street_address": "Ekonominaukio 1",
+          "postal_code": "02150",
+          "locality": "Espoo"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "Aalto University School of Business is the leading business school in Finland and ranks among the best in Europe.",
+        "images": []
+      },
+      "tags": [
+        {
+          "id": "matko1:226",
+          "name": "WORK & STUDY"
+        },
+        {
+          "id": "matko2:282",
+          "name": "Academy"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "3281",
+      "name": {
+        "fi": "Aalto-yliopisto, Taiteiden ja suunnittelun korkeakoulu",
+        "en": "Aalto University, School of Arts, Design and Architecture",
+        "sv": "Aalto-universitetet, Högskolan för konst, design och arkitektur",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "https://www.aalto.fi/fi/taiteiden-ja-suunnittelun-korkeakoulu",
+      "modified_at": "2019-03-05T14:07:54.000Z",
+      "location": {
+        "lat": 60.18522262573242,
+        "lon": 24.825517654418945,
+        "address": {
+          "street_address": "Otaniementie 14",
+          "postal_code": "02150",
+          "locality": "Espoo"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "The Aalto School of Arts, Design and Architecture is a Nordic leader in higher education for design, fashion, games, media, architecture, film, art education and art.\r\n\r\nThe School of Arts, Design and Architecture is part of Aalto University, which is a multidisciplinary university operating in the fields of technology, business and commerce, and the arts.",
+        "images": []
+      },
+      "tags": [
+        {
+          "id": "matko1:226",
+          "name": "WORK & STUDY"
+        },
+        {
+          "id": "matko2:282",
+          "name": "Academy"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "1227",
+      "name": {
+        "fi": "Aarikka",
+        "en": "Aarikka-shop",
+        "sv": "Aarikka-shop",
+        "zh": "阿里卡商店"
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "https://www.aarikka.fi/",
+      "modified_at": "2021-03-30T13:05:58.000Z",
+      "location": {
+        "lat": 60.167911529541016,
+        "lon": 24.94797706604004,
+        "address": {
+          "street_address": "Pohjoisesplanadi 27",
+          "postal_code": "00100",
+          "locality": "Helsinki"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "Aarikka Oy is a family business founded in 1954. The company designs and manufactures design products, jewellery and decorative items mainly in wood. Each product is a unique item handmade in Finland using Finnish materials. \r\n",
+        "images": [
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-07/Candle_holders_.jpg?h=bb495836&itok=lkh1O_dC",
+            "copyright_holder": "Aarikka",
+            "license_type": {
+              "id": 1,
+              "name": "All rights reserved."
+            },
+            "media_id": "c3077b39-c19c-43de-a52e-64b7c51e3387"
+          },
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-07/Helmi_tableware_L.jpg?h=0446e769&itok=RAl4y6z_",
+            "copyright_holder": "Aarikka",
+            "license_type": {
+              "id": 1,
+              "name": "All rights reserved."
+            },
+            "media_id": "91891dd9-fe24-4c3a-8535-e27a81131771"
+          },
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-07/Pakkasen_poytakoristeet_table_decorations.jpg?h=fd049a31&itok=KG0Z5oxD",
+            "copyright_holder": "Aarikka",
+            "license_type": {
+              "id": 1,
+              "name": "All rights reserved."
+            },
+            "media_id": "fc6f5cf4-fc57-475d-a449-bc1d78261320"
+          }
+        ]
+      },
+      "tags": [
+        {
+          "id": "matko2:42",
+          "name": "Finnish"
+        },
+        {
+          "id": "matko2:a-:Curated",
+          "name": "Curated"
+        },
+        {
+          "id": "matko2:67",
+          "name": "InteriorDesign"
+        },
+        {
+          "id": "matko2:a-:AliPay",
+          "name": "AliPay"
+        },
+        {
+          "id": "matko1:9",
+          "name": "SHOPPING"
+        },
+        {
+          "id": "matko2:23",
+          "name": "Design"
+        },
+        {
+          "id": "matko2:71",
+          "name": "Souvenirs"
+        },
+        {
+          "id": "matko2:72",
+          "name": "Jewellery"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": "12:00:00",
+            "closes": "18:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": "10:00:00",
+            "closes": "16:00:00",
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    },
+    {
+      "id": "4029",
+      "name": {
+        "fi": "Aarrepuisto",
+        "en": "Aarrepuisto - Treasure Park",
+        "sv": "Klenodparken",
+        "zh": null
+      },
+      "source_type": {
+        "id": 2,
+        "name": "Matko"
+      },
+      "info_url": "https://vihreatsylit.fi/aarrepuisto/",
+      "modified_at": "2021-02-09T09:54:52.000Z",
+      "location": {
+        "lat": 60.23859786987305,
+        "lon": 25.10468292236328,
+        "address": {
+          "street_address": "Aarteenetsijäntie",
+          "postal_code": "00940",
+          "locality": "Helsinki"
+        }
+      },
+      "description": {
+        "intro": null,
+        "body": "Aarrepuisto, Treasure Park, is located in Vesala, between the streets Aarteenetsijäntie and Aarteenetsijänkuja. It is bordered along both sides by apartment buildings that were built in the 1980s. \r\n\r\nThe outstanding feature of the park is the Mellunkylänpuro creek that flows through the canyon-like terrain. The pleasant sound of the water as it runs down the small rapids spreads throughout the park.\r\n\r\nAltogether the park boasts 113 different plant species and over 6000 individual plants including flower bulbs. The park is in flower from spring to autumn for visitors to enjoy.",
+        "images": [
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2020-11/myhelsinki_aarteenetsijanpuisto_0406_20200915.jpg?h=c3635fa2&itok=yhTeqMac",
+            "copyright_holder": "Helsinki Marketing / Sasa Tkalcan",
+            "license_type": {
+              "id": 2,
+              "name": "MyHelsinki license type A"
+            },
+            "media_id": "91db17c2-459c-4c88-84c5-fc7a2f217b9c"
+          },
+          {
+            "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2020-11/myhelsinki_aarteenetsijanpuisto_0440_20200915.jpg?h=515b7b60&itok=jAjhTIJM",
+            "copyright_holder": "Helsinki Marketing / Sasa Tkalcan",
+            "license_type": {
+              "id": 2,
+              "name": "MyHelsinki license type A"
+            },
+            "media_id": "37ea6260-e396-4dc0-90ad-bf5e9da2e7a7"
+          }
+        ]
+      },
+      "tags": [
+        {
+          "id": "matko1:4",
+          "name": "SIGHTS & ATTRACTIONS"
+        },
+        {
+          "id": "matko2:20",
+          "name": "Park"
+        }
+      ],
+      "opening_hours": {
+        "hours": [
+          {
+            "weekday_id": 1,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 2,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 3,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 4,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 5,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 6,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          },
+          {
+            "weekday_id": 7,
+            "opens": null,
+            "closes": null,
+            "open24h": false
+          }
+        ],
+        "openinghours_exception": ""
+      }
+    }
+  ]
+}
