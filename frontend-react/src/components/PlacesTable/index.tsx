@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Typography } from '@mui/material'
-import axios from 'axios'
 
 import { convert } from '../../util'
-import { Place, PlacesResponse } from '../../types'
+import { Place } from '../../types'
 import GenericTable, { Column } from '../Table'
+import usePlaces from '../../hooks/usePlaces'
+import ErrorPage from '../Error'
 
 const today = new Date().toLocaleString('en-us', { weekday: 'long' })
 const now = new Date().toISOString()
@@ -70,8 +71,8 @@ const columns: Column<Place>[] = [
 ]
 
 function PlacesTable() {
-  const [allPlaces, setAllPlaces] = useState<PlacesResponse | null>(null)
   const [pagination, setPagination] = useState({ page: 0, limit: 10 })
+  const [allPlaces, loading, error] = usePlaces(pagination)
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPagination({ ...pagination, page: newPage })
@@ -87,39 +88,22 @@ function PlacesTable() {
     })
   }
 
-  useEffect(() => {
-    const requestToken = axios.CancelToken
-    const source = requestToken.source()
-
-    axios
-      .get<PlacesResponse>(
-        `http://localhost:5000/api/v1/places?page=${
-          pagination.page + 1
-        }&limit=${pagination.limit}`,
-        { cancelToken: source.token }
-      )
-      .then(res => {
-        setAllPlaces(res.data)
-      })
-
-    return () => {
-      source.cancel()
-    }
-  }, [pagination.limit, pagination.page])
+  if (error) {
+    return <ErrorPage />
+  }
 
   return (
     <>
-      {allPlaces && (
-        <GenericTable<Place>
-          columns={columns}
-          data={allPlaces.data}
-          page={pagination.page}
-          rowsPerPage={pagination.limit}
-          count={Number(allPlaces.meta.count)}
-          handleChangePage={handleChangePage}
-          handleChangeRowsPerPage={handleChangeRowsPerPage}
-        />
-      )}
+      <GenericTable<Place>
+        columns={columns}
+        data={allPlaces?.data}
+        page={pagination.page}
+        loading={loading}
+        rowsPerPage={pagination.limit}
+        count={Number(allPlaces?.meta.count)}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </>
   )
 }
