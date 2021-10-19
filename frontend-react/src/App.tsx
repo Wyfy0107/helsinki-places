@@ -1,14 +1,15 @@
-import { Typography } from '@mui/material'
+import { Route, Switch } from 'react-router-dom'
 
-import PlacesTable from './components/PlacesTable'
+import Home from './pages/Home'
+import MapView from './pages/MapView'
 
 function App() {
   return (
     <div>
-      <Typography variant='h1' fontSize='4rem' sx={{ m: '1rem' }}>
-        Helsinki Places
-      </Typography>
-      <PlacesTable />
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/map' component={MapView} />
+      </Switch>
     </div>
   )
 }

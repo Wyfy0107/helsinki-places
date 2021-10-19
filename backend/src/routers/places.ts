@@ -1,10 +1,10 @@
 import express from 'express'
 
-import { getAllPlaces } from '../controllers/places'
+import { getAllPlaces, getOnePlace } from '../controllers/places'
 
 const router = express.Router()
 
 router.get('/', getAllPlaces)
-// router.get('/:name', getPlacesByName)
+router.get('/:id', getOnePlace)
 
 export default router

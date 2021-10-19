@@ -22,10 +22,17 @@ export const getAllPlaces = async (
   //
 }
 
-// export const getPlacesByName = async (req: Request, res: Response) => {
-//   const name = req.params.name
-//   try {
-//   } catch (error) {
-//     throw new InternalServerError()
-//   }
-// }
+export const getOnePlace = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const id = req.params.id
+
+  try {
+    const place = await PlacesService.getById(id)
+    res.json(place)
+  } catch (error) {
+    next(new InternalServerError())
+  }
+}

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { InternalServerError } from '../util/error'
-import { PlacesResponse } from '../types'
+import { Place, PlacesResponse } from '../types'
 
 const getAll = async (
   page?: number,
@@ -40,14 +40,19 @@ const getAll = async (
   }
 }
 
-// const getByName = async (name: string) => {
-//   try {
-// 	  const result = await axios.get
-//   } catch (error) {
-//     throw new InternalServerError()
-//   }
-// }
+const getById = async (id: string) => {
+  try {
+    const result = await axios.get<Place>(
+      `https://open-api.myhelsinki.fi/v1/place/${id}`
+    )
+
+    return result.data
+  } catch (error) {
+    throw new InternalServerError()
+  }
+}
 
 export default {
   getAll,
+  getById,
 }
