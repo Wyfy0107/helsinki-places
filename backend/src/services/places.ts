@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 import { InternalServerError } from '../util/error'
-import { Place, PlacesResponse } from '../types'
-import paginate from '../util/paginate'
+import { PlacesResponse } from '../types'
 
 const getAll = async (
   page?: number,
@@ -16,7 +15,11 @@ const getAll = async (
     )
 
     if (page && limit) {
-      const paginated = paginate<Place>(page, limit, data)
+      const {
+        data: { data, meta },
+      } = await axios.get<PlacesResponse>(
+        `https://open-api.myhelsinki.fi/v1/places/?language_filter=en&start=${page}&limit=${limit}`
+      )
 
       return {
         meta: {
@@ -24,7 +27,7 @@ const getAll = async (
           page,
           limit,
         },
-        data: paginated,
+        data,
       }
     }
 

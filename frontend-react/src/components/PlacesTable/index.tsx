@@ -88,15 +88,23 @@ function PlacesTable() {
   }
 
   useEffect(() => {
+    const requestToken = axios.CancelToken
+    const source = requestToken.source()
+
     axios
       .get<PlacesResponse>(
         `http://localhost:5000/api/v1/places?page=${
           pagination.page + 1
-        }&limit=${pagination.limit}`
+        }&limit=${pagination.limit}`,
+        { cancelToken: source.token }
       )
       .then(res => {
         setAllPlaces(res.data)
       })
+
+    return () => {
+      source.cancel()
+    }
   }, [pagination.limit, pagination.page])
 
   return (
