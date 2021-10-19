@@ -30,6 +30,8 @@ export type Place = {
 export type PlacesResponse = {
   meta: {
     count: number
+    page: null | number
+    limit: null | number
   }
   data: Place[]
 }

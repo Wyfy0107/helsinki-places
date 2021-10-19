@@ -292,7 +292,7 @@
     {
       "id": "3424",
       "name": {
-        "fi": "Aalto-yliopisto, Kauppakorkeakoulu",
+        "fi": "fake 2",
         "en": "Aalto University School of Business",
         "sv": "Aalto-universitetet, Handelshögskolan",
         "zh": null
@@ -378,7 +378,7 @@
     {
       "id": "3281",
       "name": {
-        "fi": "Aalto-yliopisto, Taiteiden ja suunnittelun korkeakoulu",
+        "fi": "fake 3",
         "en": "Aalto University, School of Arts, Design and Architecture",
         "sv": "Aalto-universitetet, Högskolan för konst, design och arkitektur",
         "zh": null
@@ -464,7 +464,7 @@
     {
       "id": "1227",
       "name": {
-        "fi": "Aarikka",
+        "fi": "fake 4",
         "en": "Aarikka-shop",
         "sv": "Aarikka-shop",
         "zh": "阿里卡商店"
