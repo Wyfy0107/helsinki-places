@@ -5,8 +5,8 @@ import PlacesTable from './components/PlacesTable'
 function App() {
   return (
     <div>
-      <Typography variant='h1' fontSize='4rem'>
-        My Places
+      <Typography variant='h1' fontSize='4rem' sx={{ m: '1rem' }}>
+        Helsinki Places
       </Typography>
       <PlacesTable />
     </div>

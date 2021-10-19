@@ -8,7 +8,6 @@ import usePlaces from '../../hooks/usePlaces'
 import ErrorPage from '../Error'
 
 const today = new Date().toLocaleString('en-us', { weekday: 'long' })
-const now = new Date().toISOString()
 
 const weekdays = [
   'Monday',
@@ -55,9 +54,10 @@ const columns: Column<Place>[] = [
       )?.closes
 
       let isOpen = true
-      const closingISO = convert(closingHours)
-      const diff = closingISO - Number(now)
-      if (diff <= 0) {
+      const closing = new Date(convert(closingHours))
+      const now = new Date()
+
+      if (now > closing) {
         isOpen = false
       }
 

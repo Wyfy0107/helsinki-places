@@ -10,6 +10,7 @@ import {
   Typography,
   Skeleton,
 } from '@mui/material'
+import { v4 } from 'uuid'
 
 export type Resource = {
   id: string
@@ -41,14 +42,11 @@ function GenericTable<T extends Resource>({
   handleChangePage,
   handleChangeRowsPerPage,
 }: TableProps<T>) {
-  console.log('loading', loading)
-  console.log('num', rowsPerPage)
-
   const loader = () => {
     const skeletons = new Array(rowsPerPage).fill(undefined).map(() => (
-      <TableRow>
+      <TableRow key={v4()}>
         {new Array(columns.length).fill(undefined).map(() => (
-          <TableCell>
+          <TableCell key={v4()}>
             <Skeleton variant='text' />
           </TableCell>
         ))}
