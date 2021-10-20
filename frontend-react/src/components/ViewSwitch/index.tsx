@@ -12,7 +12,12 @@ function ViewSwitch({ checked, handleChange }: SwitchProps) {
     <FormGroup>
       <FormControlLabel
         control={
-          <Switch checked={checked} onChange={handleChange} color='default' />
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+            color='default'
+            id='view-switch'
+          />
         }
         label='Map View'
       />

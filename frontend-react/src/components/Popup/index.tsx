@@ -23,9 +23,14 @@ function CustomPopup({
   const id = open ? 'simple-popover' : undefined
 
   useEffect(() => {
+    const requestToken = axios.CancelToken
+    const source = requestToken.source()
+
     if (clickedMarkerId) {
       axios
-        .get<Place>(`http://localhost:5000/api/v1/places/${clickedMarkerId}`)
+        .get<Place>(`http://localhost:5000/api/v1/places/${clickedMarkerId}`, {
+          cancelToken: source.token,
+        })
         .then(res => {
           setPlaceInfo(res.data)
         })
@@ -33,6 +38,7 @@ function CustomPopup({
 
     return () => {
       setPlaceInfo(null)
+      source.cancel()
     }
   }, [clickedMarkerId])
 
