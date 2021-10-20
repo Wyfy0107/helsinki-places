@@ -6,6 +6,8 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 
+import { limitRange } from '../../pages/MapView'
+
 export type SimpleDialogProps = {
   open: boolean
   handleClose: () => void
@@ -33,9 +35,11 @@ function SimpleDialog({
             label='Age'
             onChange={handleChangeMarkerNumber}
           >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
+            {limitRange.map(limit => (
+              <MenuItem value={limit} key={limit}>
+                {limit}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>

@@ -39,6 +39,7 @@ function MapToolbar({ handlePagination, limit }: ToolbarProps) {
 
   const handleChangeMarkerNumber = (event: SelectChangeEvent) => {
     handlePagination(Number(event.target.value as string))
+    handleCloseDialog()
   }
 
   return (
@@ -67,7 +68,7 @@ function MapToolbar({ handlePagination, limit }: ToolbarProps) {
           >
             <MenuItem onClick={handleOpenDialog}>Filter</MenuItem>
           </Menu>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' sx={{ flexGrow: 1 }}>
             Map View
           </Typography>
         </Toolbar>

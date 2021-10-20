@@ -61,8 +61,9 @@ function CustomPopup({
         {placeInfo?.name.en}
       </Typography>
       <Typography variant='subtitle1' sx={{ p: 1 }}>
-        {placeInfo?.name.en}
+        {placeInfo?.location.address.street_address}
       </Typography>
+      <Typography sx={{ p: 1 }}>Opening Hours:</Typography>
       {placeInfo?.opening_hours.hours?.map(h => renderOpeningHours(h))}
     </Popover>
   )

@@ -13,9 +13,13 @@ const Map = ReactMapboxGl({
 })
 
 const helsinkiCoordinates: [number, number] = [24.945831, 60.192059]
+export const limitRange = [10, 20, 30]
 
 function MapView() {
-  const [pagination, setPagination] = useState({ page: 0, limit: 10 })
+  const [pagination, setPagination] = useState({
+    page: 0,
+    limit: limitRange[0],
+  })
   const [clickedMarkerId, setClickedMarkerId] = useState<string | null>(null)
   const [places, , error] = usePlaces(pagination)
 
