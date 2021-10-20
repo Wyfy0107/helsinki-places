@@ -9,7 +9,7 @@ import ErrorPage from '../Error'
 
 const today = new Date().toLocaleString('en-us', { weekday: 'long' })
 
-const weekdays = [
+export const weekdays = [
   'Monday',
   'Tuesday',
   'Wednesday',

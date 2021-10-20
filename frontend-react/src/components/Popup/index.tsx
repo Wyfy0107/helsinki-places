@@ -1,44 +1,70 @@
 import { useEffect, useState } from 'react'
-import { Popup } from 'react-mapbox-gl'
 import axios from 'axios'
+import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
 
-import { ClickedMarker } from '../../pages/MapView'
-import { Place } from '../../types'
-import { Typography } from '@mui/material'
+import { Hour, Place } from '../../types'
+import { weekdays } from '../PlacesTable'
 
 type PopupProps = {
-  markerLocation: ClickedMarker
+  open: boolean
+  anchorEl: HTMLButtonElement | null
+  handleClose: () => void
+  clickedMarkerId: string | null
 }
 
 function CustomPopup({
-  markerLocation: { long, lat, isOpen, id },
+  clickedMarkerId,
+  open,
+  anchorEl,
+  handleClose,
 }: PopupProps): JSX.Element {
   const [placeInfo, setPlaceInfo] = useState<Place | null>(null)
+  const id = open ? 'simple-popover' : undefined
 
   useEffect(() => {
-    if (id) {
+    if (clickedMarkerId) {
       axios
-        .get<Place>(`http://localhost:5000/api/v1/places/${id}`)
+        .get<Place>(`http://localhost:5000/api/v1/places/${clickedMarkerId}`)
         .then(res => {
           setPlaceInfo(res.data)
         })
     }
-  }, [id])
+
+    return () => {
+      setPlaceInfo(null)
+    }
+  }, [clickedMarkerId])
+
+  const renderOpeningHours = (hour: Hour) => {
+    const day = weekdays.find(w => w.id === hour.weekday_id)?.name
+
+    return (
+      <Typography key={hour.weekday_id} sx={{ p: 1 }}>
+        {day}: {hour.opens}-{hour.closes}
+      </Typography>
+    )
+  }
 
   return (
-    <Popup
-      style={{ display: isOpen ? 'block' : 'none' }}
-      coordinates={[long, lat]}
+    <Popover
+      id={id}
+      open={open}
+      anchorEl={anchorEl}
+      onClose={handleClose}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left',
+      }}
     >
-      {placeInfo && (
-        <>
-          <Typography variant='h6'>{placeInfo.name.fi}</Typography>
-          <Typography variant='subtitle1'>
-            {placeInfo.location.address.street_address}
-          </Typography>
-        </>
-      )}
-    </Popup>
+      <Typography variant='h6' sx={{ p: 1 }}>
+        {placeInfo?.name.en}
+      </Typography>
+      <Typography variant='subtitle1' sx={{ p: 1 }}>
+        {placeInfo?.name.en}
+      </Typography>
+      {placeInfo?.opening_hours.hours?.map(h => renderOpeningHours(h))}
+    </Popover>
   )
 }
 

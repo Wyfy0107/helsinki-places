@@ -6,7 +6,7 @@ import { Place } from '../../types'
 type MarkerProps = {
   location: Place['location']
   id: string
-  handleMarkerClick: (long: number, lat: number, id: string) => void
+  handleMarkerClick: (event: React.MouseEvent<any>, id: string) => void
 }
 
 function CustomMarker({
@@ -18,7 +18,7 @@ function CustomMarker({
     <Marker
       coordinates={[lon, lat]}
       anchor='bottom'
-      onClick={() => handleMarkerClick(lon, lat, id)}
+      onClick={event => handleMarkerClick(event, id)}
     >
       <RoomIcon color='primary' />
     </Marker>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import ReactMapboxGl from 'react-mapbox-gl'
 
 import ErrorPage from '../components/Error'
+import MapToolbar from '../components/MapToolbar'
 import CustomMarker from '../components/Marker'
 import CustomPopup from '../components/Popup'
 import usePlaces from '../hooks/usePlaces'
@@ -11,25 +12,27 @@ const Map = ReactMapboxGl({
     'pk.eyJ1Ijoid3lmeSIsImEiOiJja3V5YWFmY2czNzlkMm9xcjdqYXF0NGpjIn0.Fk-ITa0-NMXxwoonkkgQkA',
 })
 
-export type ClickedMarker = {
-  lat: number
-  long: number
-  isOpen: boolean
-  id: string | null
-}
+const helsinkiCoordinates: [number, number] = [24.945831, 60.192059]
 
 function MapView() {
   const [pagination, setPagination] = useState({ page: 0, limit: 10 })
-  const [clickedMarker, setClickedMarker] = useState<ClickedMarker>({
-    lat: 0,
-    long: 0,
-    isOpen: false,
-    id: null,
-  })
-  const [places, loading, error] = usePlaces(pagination)
+  const [clickedMarkerId, setClickedMarkerId] = useState<string | null>(null)
+  const [places, , error] = usePlaces(pagination)
 
-  const handleMarkerClick = (long: number, lat: number, id: string) => {
-    setClickedMarker({ long, lat, id, isOpen: !clickedMarker.isOpen })
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const open = Boolean(anchorEl)
+
+  const handleMarkerClick = (event: React.MouseEvent<any>, id: string) => {
+    setAnchorEl(event.currentTarget)
+    setClickedMarkerId(id)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const handlePagination = (limit: number) => {
+    setPagination({ page: 0, limit })
   }
 
   if (error) {
@@ -37,28 +40,38 @@ function MapView() {
   }
 
   return (
-    <Map
-      // eslint-disable-next-line
-      style='mapbox://styles/mapbox/streets-v9'
-      containerStyle={{
-        height: '100vh',
-        width: '100vw',
-      }}
-      // Helsinki coordinates
-      center={[24.945831, 60.192059]}
-    >
-      <>
-        {places?.data.map(p => (
-          <CustomMarker
-            key={p.id}
-            location={p.location}
-            handleMarkerClick={handleMarkerClick}
-            id={p.id}
-          />
-        ))}
-      </>
-      <CustomPopup markerLocation={clickedMarker} />
-    </Map>
+    <>
+      <MapToolbar
+        handlePagination={handlePagination}
+        limit={pagination.limit}
+      />
+      <Map
+        // eslint-disable-next-line
+        style='mapbox://styles/mapbox/streets-v9'
+        containerStyle={{
+          height: '100vh',
+          width: '100vw',
+        }}
+        center={helsinkiCoordinates}
+      >
+        <>
+          {places?.data.map(p => (
+            <CustomMarker
+              key={p.id}
+              location={p.location}
+              handleMarkerClick={handleMarkerClick}
+              id={p.id}
+            />
+          ))}
+        </>
+        <CustomPopup
+          clickedMarkerId={clickedMarkerId}
+          anchorEl={anchorEl}
+          handleClose={handleClose}
+          open={open}
+        />
+      </Map>
+    </>
   )
 }
 
