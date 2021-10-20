@@ -15,7 +15,12 @@ const Map = ReactMapboxGl({
 const helsinkiCoordinates: [number, number] = [24.945831, 60.192059]
 export const limitRange = [10, 20, 30]
 
-function MapView() {
+type MapProps = {
+  checked: boolean
+  handleChange: () => void
+}
+
+function MapView({ checked, handleChange }: MapProps) {
   const [pagination, setPagination] = useState({
     page: 0,
     limit: limitRange[0],
@@ -48,6 +53,8 @@ function MapView() {
       <MapToolbar
         handlePagination={handlePagination}
         limit={pagination.limit}
+        checked={checked}
+        handleChange={handleChange}
       />
       <Map
         // eslint-disable-next-line

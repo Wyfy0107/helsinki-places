@@ -1,13 +1,24 @@
-import { Typography } from '@mui/material'
+import { AppBar, Toolbar, Typography } from '@mui/material'
 
 import PlacesTable from '../components/PlacesTable'
+import ViewSwitch from '../components/ViewSwitch'
 
-function Home() {
+type HomeProps = {
+  checked: boolean
+  handleChange: () => void
+}
+
+function Home({ checked, handleChange }: HomeProps) {
   return (
     <div>
-      <Typography variant='h1' fontSize='4rem' sx={{ m: '1rem' }}>
-        Helsinki Places
-      </Typography>
+      <AppBar position='static' sx={{ mb: 4 }}>
+        <Toolbar>
+          <Typography variant='h6' sx={{ flexGrow: 1 }}>
+            Helsinki Places
+          </Typography>
+          <ViewSwitch checked={checked} handleChange={handleChange} />
+        </Toolbar>
+      </AppBar>
       <PlacesTable />
     </div>
   )

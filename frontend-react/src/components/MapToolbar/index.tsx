@@ -10,13 +10,21 @@ import { SelectChangeEvent } from '@mui/material/Select'
 import { Menu } from '@mui/material'
 
 import SimpleDialog from '../Dialog'
+import ViewSwitch from '../ViewSwitch'
 
 type ToolbarProps = {
   handlePagination: (limit: number) => void
   limit: number
+  checked: boolean
+  handleChange: () => void
 }
 
-function MapToolbar({ handlePagination, limit }: ToolbarProps) {
+function MapToolbar({
+  handlePagination,
+  limit,
+  handleChange,
+  checked,
+}: ToolbarProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [openDialog, setOpenDialog] = useState(false)
 
@@ -71,6 +79,7 @@ function MapToolbar({ handlePagination, limit }: ToolbarProps) {
           <Typography variant='h6' sx={{ flexGrow: 1 }}>
             Map View
           </Typography>
+          <ViewSwitch checked={checked} handleChange={handleChange} />
         </Toolbar>
       </AppBar>
       <SimpleDialog

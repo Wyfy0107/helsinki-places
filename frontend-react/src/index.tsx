@@ -8,11 +8,15 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import './index.css'
 import { BrowserRouter as Router } from 'react-router-dom'
 
+import ErrorBoundary from './components/Error/ErrorBoundary'
+
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <App />
+      </Router>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 )
