@@ -24,7 +24,6 @@ install-backend:
   #   expire_in: 1 week
 
 install-frontend:
-  image: cypress/base:10
   stage: install
   script:
     - cd frontend-react
