@@ -4,7 +4,7 @@ cache:
   paths:
     - backend/node_modules
     - frontend-react/node_modules
-    - frontend-react/.cache/Cypress
+    - ~/.cache/Cypress
     - .yarn
 
 stages:
