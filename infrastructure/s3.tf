@@ -1,6 +1,17 @@
+locals {
+  s3_origin_id = "MyHelsinkiS3Origin"
+  common_tags = {
+    Project     = var.project
+    Environment = var.environment
+  }
+}
+
 resource "aws_s3_bucket" "revision" {
   bucket = "${var.project}-${var.environment}-app-revision"
   acl    = "private"
+  tags = merge(local.common_tags, {
+    "Name" : "revision"
+  })
 }
 
 resource "aws_s3_bucket" "web" {
@@ -13,9 +24,9 @@ resource "aws_s3_bucket" "web" {
     index_document = "index.html"
   }
 
-  tags = {
-    Name = var.project
-  }
+  tags = merge(local.common_tags, {
+    "Name" : "MyHelsinkiWebsite"
+  })
 }
 
 data "aws_iam_policy_document" "web_policy" {
@@ -42,9 +53,6 @@ resource "aws_route53_record" "web" {
   }
 }
 
-locals {
-  s3_origin_id = "MyHelsinkiS3Origin"
-}
 
 resource "aws_cloudfront_origin_access_identity" "web" {
   comment = "OAI for my helsinki website"

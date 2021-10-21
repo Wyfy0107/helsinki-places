@@ -1,0 +1,29 @@
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
+install-backend:
+  stage: install
+  script:
+    - cd backend
+    - yarn
+
+install-frontend:
+  stage: install
+  script:
+    - cd frontend-react
+    - yarn
+
+test-backend:
+  stage: test
+  script:
+    - cd backend
+    - yarn run test
+
+test-frontend:
+  stage: test
+  script:
+    - cd frontend-react
+    - yarn run test:e2e
