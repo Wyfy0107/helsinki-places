@@ -4,6 +4,8 @@ cache:
   paths:
     - backend/node_modules
     - frontend-react/node_modules
+    - frontend-react/cache/Cypress
+    - .yarn
 
 stages:
   - install
@@ -16,20 +18,21 @@ install-backend:
   script:
     - cd backend
     - yarn
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 week
+  # artifacts:
+  #   paths:
+  #     - node_modules/
+  #   expire_in: 1 week
 
 install-frontend:
+  image: cypress/base:10
   stage: install
   script:
     - cd frontend-react
     - yarn
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 week
+  # artifacts:
+  #   paths:
+  #     - node_modules/
+  #   expire_in: 1 week
 
 test-backend:
   stage: test
@@ -38,6 +41,7 @@ test-backend:
     - yarn run test
 
 test-frontend:
+  image: cypress/base:10
   stage: test
   script:
     - cd frontend-react
