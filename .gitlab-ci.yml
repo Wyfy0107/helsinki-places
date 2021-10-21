@@ -1,3 +1,10 @@
+image: node:latest
+
+cache:
+  paths:
+    - backend/node_modules
+    - frontend-react/node_modules
+
 stages:
   - install
   - test
