@@ -1,4 +1,4 @@
-image: node:latest
+image: node:alpine
 
 cache:
   paths:
@@ -16,12 +16,20 @@ install-backend:
   script:
     - cd backend
     - yarn
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
 
 install-frontend:
   stage: install
   script:
     - cd frontend-react
     - yarn
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
 
 test-backend:
   stage: test
