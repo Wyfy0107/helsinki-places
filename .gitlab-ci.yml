@@ -40,8 +40,9 @@ test-backend:
     - yarn run test
 
 test-frontend:
-  image: cypress/base:10
+  image: cypress/base:14
   stage: test
   script:
     - cd frontend-react
+    - yarn run start
     - yarn run test:e2e
