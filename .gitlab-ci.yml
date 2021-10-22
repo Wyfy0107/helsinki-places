@@ -47,6 +47,8 @@ test-backend:
 
 test-frontend:
   image: docker:stable
+  services:
+    - docker:dind
   stage: test
   script:
     - docker run -dp 5000:5000 wyfy/helsinki-places-server
