@@ -29,6 +29,7 @@ install-frontend:
     - yarn
 
 docker-image-build:
+  image: docker:stable
   stage: docker-build
   script:
     - cd backend
