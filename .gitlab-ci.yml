@@ -46,7 +46,7 @@ test-backend:
     - yarn run test
 
 test-frontend:
-  image: docker:stable
+  image: node:14
   services:
     - docker:dind
   stage: test
