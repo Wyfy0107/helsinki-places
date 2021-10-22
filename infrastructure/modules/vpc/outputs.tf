@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = aws_vpc.demo.id
+  value = aws_vpc.this.id
 }
 
 output "vpc_subnets_id" {

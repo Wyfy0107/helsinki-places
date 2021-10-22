@@ -18,3 +18,15 @@ variable "public_subnets_cidr" {
 variable "certificate_arn" {
   type = string
 }
+
+variable "server_domain_name" {
+  type = string
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "vpc_subnets_id" {
+  type = list(string)
+}

@@ -6,6 +6,18 @@ locals {
   }
 }
 
+data "aws_iam_policy_document" "s3_policy" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["arn:aws:s3:::${var.web_domain_name}/*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = [aws_cloudfront_origin_access_identity.web.iam_arn]
+    }
+  }
+}
+
 resource "aws_s3_bucket" "revision" {
   bucket = "${var.project}-${var.environment}-app-revision"
   acl    = "private"
