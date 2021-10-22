@@ -19,24 +19,24 @@ install-backend:
   stage: install
   script:
     - cd backend
-    - yarn
+    - yarn install --cache-folder ../.yarn
 
 install-frontend:
   stage: install
   script:
     - cd frontend-react
-    - yarn
+    - yarn install --cache-folder ../.yarn
 
-# build-backend:
-#   stage: build
-#   cache:
-#     paths:
-#       - backend/dist
-#   script:
-#     - cd backend
-#     - yarn run build
-#     - cp -R scripts dist
-#     - cp appspec.yml package.json yarn.lock dist
+build-backend:
+  stage: build
+  cache:
+    paths:
+      - backend/dist
+  script:
+    - cd backend
+    - yarn run build
+    - cp -R scripts dist
+    - cp appspec.yml package.json yarn.lock dist
 
 build-frontend:
   stage: build
