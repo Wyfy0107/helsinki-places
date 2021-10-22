@@ -16,17 +16,17 @@ stages:
   - build
   - deploy
 
-# install-backend:
-#   stage: install
-#   script:
-#     - cd backend
-#     - yarn
+install-backend:
+  stage: install
+  script:
+    - cd backend
+    - yarn
 
-# install-frontend:
-#   stage: install
-#   script:
-#     - cd frontend-react
-#     - yarn
+install-frontend:
+  stage: install
+  script:
+    - cd frontend-react
+    - yarn
 
 docker-image-build:
   image: docker:stable
@@ -38,30 +38,31 @@ docker-image-build:
     - docker build -t wyfy/helsinki-places-server .
     - docker login -u wyfy -p $DOCKER_ACCESS_TOKEN
     - docker push wyfy/helsinki-places-server
-# test-backend:
-#   stage: test
-#   script:
-#     - cd backend
-#     - yarn run test
 
-# test-frontend:
-#   image: cypress/base:14
-#   stage: test
-#   script:
-#     - yarn global add ts-node
-#     - cd frontend-react
-#     - yarn run test
+test-backend:
+  stage: test
+  script:
+    - cd backend
+    - yarn run test
 
-# build-backend:
-#   stage: build
-#   script:
-#     - cd backend
-#     - yarn run build
-#     - cp -R scripts dist
-#     - cp appspec.yml package.json yarn.lock dist
+test-frontend:
+  image: cypress/base:14
+  stage: test
+  script:
+    - docker run -dp 5000:5000 wyfy/helsinki-places-server
+    - cd frontend-react
+    - yarn run test
 
-# build-frontend:
-#   stage: build
-#   script:
-#     - cd frontend-react
-#     - yarn run build
+build-backend:
+  stage: build
+  script:
+    - cd backend
+    - yarn run build
+    - cp -R scripts dist
+    - cp appspec.yml package.json yarn.lock dist
+
+build-frontend:
+  stage: build
+  script:
+    - cd frontend-react
+    - yarn run build
