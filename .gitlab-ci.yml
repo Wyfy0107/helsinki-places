@@ -37,7 +37,7 @@ test-frontend:
   image: cypress/base:14
   stage: test
   script:
-    - yarn add global pm2
+    - yarn global add pm2
     - cd frontend-react
     - yarn run test
 
