@@ -30,6 +30,8 @@ install-frontend:
 
 docker-image-build:
   image: docker:stable
+  services:
+    - docker:dind
   stage: docker-build
   script:
     - cd backend
