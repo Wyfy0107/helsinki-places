@@ -27,22 +27,22 @@ install-frontend:
     - cd frontend-react
     - yarn
 
-build-backend:
-  stage: build
-  cache:
-    paths:
-      - backend/dist
-  script:
-    - cd backend
-    - yarn run build
-    - cp -R scripts dist
-    - cp appspec.yml package.json yarn.lock dist
-
-# build-frontend:
+# build-backend:
 #   stage: build
+#   cache:
+#     paths:
+#       - backend/dist
 #   script:
-#     - cd frontend-react
+#     - cd backend
 #     - yarn run build
+#     - cp -R scripts dist
+#     - cp appspec.yml package.json yarn.lock dist
+
+build-frontend:
+  stage: build
+  script:
+    - cd frontend-react
+    - yarn run build
 
 # test-backend:
 #   stage: test
@@ -56,5 +56,5 @@ test-frontend:
     - yarn global add pm2
     - pm2 start --name backend backend/dist/server.js
     - cd frontend-react
+    - yarn add -D start-server-and-test
     - yarn run test
-    - pm2 delete backend
