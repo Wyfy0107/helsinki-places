@@ -7,17 +7,13 @@ cache:
     - frontend-react/build
     - ~/.cache/Cypress
     - .yarn
+    - ~/.config/yarn/global
 
 stages:
   - install
   - test
   - build
   - deploy
-
-install-global:
-  stage: install
-  script:
-    - yarn add global pm2
 
 install-backend:
   stage: install
@@ -41,6 +37,7 @@ test-frontend:
   image: cypress/base:14
   stage: test
   script:
+    - yarn add global pm2
     - cd frontend-react
     - yarn run test
 
