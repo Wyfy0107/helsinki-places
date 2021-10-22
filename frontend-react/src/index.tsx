@@ -1,14 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './index.css'
-import { BrowserRouter as Router } from 'react-router-dom'
 
 import ErrorBoundary from './components/Error/ErrorBoundary'
+
+if (process.env.NODE_ENV === 'production') {
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_PROD as string
+} else {
+  axios.defaults.baseURL = process.env.REACT_APP_BACKEND_DEV as string
+}
 
 ReactDOM.render(
   <React.StrictMode>

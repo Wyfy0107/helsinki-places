@@ -22,10 +22,9 @@ const usePlaces = ({
     setLoading(true)
 
     axios
-      .get<PlacesResponse>(
-        `http://localhost:5000/api/v1/places?page=${page + 1}&limit=${limit}`,
-        { cancelToken: source.token }
-      )
+      .get<PlacesResponse>(`/places?page=${page + 1}&limit=${limit}`, {
+        cancelToken: source.token,
+      })
       .then(res => {
         setAllPlaces(res.data)
         setLoading(false)
