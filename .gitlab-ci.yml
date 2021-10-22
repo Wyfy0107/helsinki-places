@@ -46,7 +46,6 @@ test-backend:
     - yarn run test
 
 test-frontend:
-  image: cypress/base:14
   stage: test
   script:
     - docker run -dp 5000:5000 wyfy/helsinki-places-server
