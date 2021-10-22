@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
+    "start:prod": "node server.js",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/server.js",
     "test": "jest",

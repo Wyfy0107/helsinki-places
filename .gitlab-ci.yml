@@ -11,6 +11,7 @@ cache:
 
 stages:
   - install
+  - docker-build
   - test
   - build
   - deploy
@@ -27,30 +28,37 @@ install-frontend:
     - cd frontend-react
     - yarn
 
-test-backend:
-  stage: test
+docker-image-build:
+  stage: docker-build
   script:
     - cd backend
-    - yarn run test
+    - docker build -t $CI_REGISTRY/helsinki-places/helsinki-places .
+    - docker login registry.helsinki-places.com -u nguyenduy010798 -p $DOCKER_ACCESS_TOKEN
+    - docker push $CI_REGISTRY/helsinki-places/helsinki-places
+# test-backend:
+#   stage: test
+#   script:
+#     - cd backend
+#     - yarn run test
 
-test-frontend:
-  image: cypress/base:14
-  stage: test
-  script:
-    - yarn global add pm2
-    - cd frontend-react
-    - yarn run test
+# test-frontend:
+#   image: cypress/base:14
+#   stage: test
+#   script:
+#     - yarn global add ts-node
+#     - cd frontend-react
+#     - yarn run test
 
-build-backend:
-  stage: build
-  script:
-    - cd backend
-    - yarn run build
-    - cp -R scripts dist
-    - cp appspec.yml package.json yarn.lock dist
+# build-backend:
+#   stage: build
+#   script:
+#     - cd backend
+#     - yarn run build
+#     - cp -R scripts dist
+#     - cp appspec.yml package.json yarn.lock dist
 
-build-frontend:
-  stage: build
-  script:
-    - cd frontend-react
-    - yarn run build
+# build-frontend:
+#   stage: build
+#   script:
+#     - cd frontend-react
+#     - yarn run build
