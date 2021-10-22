@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import fake from './fake.json'
 
 describe('My Helsinki Places Website', () => {
   beforeEach(() => {

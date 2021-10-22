@@ -1,4 +1,4 @@
-image: node:14
+image: node:latest
 
 cache:
   paths:
@@ -11,16 +11,15 @@ cache:
 
 stages:
   - install
-  - docker-build
-  - test
   - build
+  - test
   - deploy
 
-# install-backend:
-#   stage: install
-#   script:
-#     - cd backend
-#     - yarn
+install-backend:
+  stage: install
+  script:
+    - cd backend
+    - yarn
 
 install-frontend:
   stage: install
@@ -28,16 +27,22 @@ install-frontend:
     - cd frontend-react
     - yarn
 
-# docker-image-build:
-#   image: docker:stable
-#   services:
-#     - docker:dind
-#   stage: docker-build
+build-backend:
+  stage: build
+  cache:
+    paths:
+      - backend/dist
+  script:
+    - cd backend
+    - yarn run build
+    - cp -R scripts dist
+    - cp appspec.yml package.json yarn.lock dist
+
+# build-frontend:
+#   stage: build
 #   script:
-#     - cd backend
-#     - docker build -t wyfy/helsinki-places-server .
-#     - docker login -u wyfy -p $DOCKER_ACCESS_TOKEN
-#     - docker push wyfy/helsinki-places-server
+#     - cd frontend-react
+#     - yarn run build
 
 # test-backend:
 #   stage: test
@@ -46,26 +51,10 @@ install-frontend:
 #     - yarn run test
 
 test-frontend:
-  image: node:latest
   stage: test
-  # before_script:
-  #   - curl -o- -L https://yarnpkg.com/install.sh | bash
-  #   - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
   script:
-    - docker run -dp 5000:5000 wyfy/helsinki-places-server
+    - yarn global add pm2
+    - pm2 start --name backend backend/dist/server.js
     - cd frontend-react
     - yarn run test
-
-build-backend:
-  stage: build
-  script:
-    - cd backend
-    - yarn run build
-    - cp -R scripts dist
-    - cp appspec.yml package.json yarn.lock dist
-
-build-frontend:
-  stage: build
-  script:
-    - cd frontend-react
-    - yarn run build
+    - pm2 delete backend
