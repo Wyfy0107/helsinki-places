@@ -16,11 +16,11 @@ stages:
   - build
   - deploy
 
-install-backend:
-  stage: install
-  script:
-    - cd backend
-    - yarn
+# install-backend:
+#   stage: install
+#   script:
+#     - cd backend
+#     - yarn
 
 install-frontend:
   stage: install
@@ -28,22 +28,22 @@ install-frontend:
     - cd frontend-react
     - yarn
 
-docker-image-build:
-  image: docker:stable
-  services:
-    - docker:dind
-  stage: docker-build
-  script:
-    - cd backend
-    - docker build -t wyfy/helsinki-places-server .
-    - docker login -u wyfy -p $DOCKER_ACCESS_TOKEN
-    - docker push wyfy/helsinki-places-server
+# docker-image-build:
+#   image: docker:stable
+#   services:
+#     - docker:dind
+#   stage: docker-build
+#   script:
+#     - cd backend
+#     - docker build -t wyfy/helsinki-places-server .
+#     - docker login -u wyfy -p $DOCKER_ACCESS_TOKEN
+#     - docker push wyfy/helsinki-places-server
 
-test-backend:
-  stage: test
-  script:
-    - cd backend
-    - yarn run test
+# test-backend:
+#   stage: test
+#   script:
+#     - cd backend
+#     - yarn run test
 
 test-frontend:
   image: node:latest
