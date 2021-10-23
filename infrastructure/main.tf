@@ -45,3 +45,43 @@ resource "aws_codedeploy_deployment_group" "server" {
   }
 }
 
+resource "aws_elasticache_cluster" "server" {
+  cluster_id           = "cluster-example"
+  engine               = "redis"
+  node_type            = "cache.t2.micro"
+  num_cache_nodes      = 1
+  parameter_group_name = "default.redis3.2"
+  engine_version       = "3.2.10"
+  port                 = 6379
+  security_group_ids   = [aws_security_group.redis.id]
+  subnet_group_name    = aws_elasticache_subnet_group.redis.name
+
+  tags = local.common_tags
+}
+
+resource "aws_security_group" "redis" {
+  name   = "redis-sgs"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [module.asg.ec2_sgs_id]
+  }
+
+  tags = local.common_tags
+}
+
+resource "aws_elasticache_subnet_group" "redis" {
+  name       = "elasticcache-subnet-group"
+  subnet_ids = [module.vpc.vpc_subnets_id]
+}
+
+resource "aws_elasticache_user" "test" {
+  user_id       = "wyfy0107"
+  user_name     = "wyfy"
+  access_string = "on ~app::* -@all +@read +@hash +@bitmap +@geo -setbit -bitfield -hset -hsetnx -hmset -hincrby -hincrbyfloat -hdel -bitop -geoadd -georadius -georadiusbymember"
+  engine        = "REDIS"
+  passwords     = ["wyfy010798"]
+}

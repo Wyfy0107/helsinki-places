@@ -31,7 +31,7 @@ install-backend:
   artifacts:
     paths:
       - backend/dist
-    expire_in: 1 hour
+    expire_in: 10 minute
 
 install-frontend:
   stage: build
@@ -48,7 +48,7 @@ install-frontend:
   artifacts:
     paths:
       - frontend-react/build
-    expire_in: 1 hour
+    expire_in: 10 minute
 
 test-backend:
   stage: test
