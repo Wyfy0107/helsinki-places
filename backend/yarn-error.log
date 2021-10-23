@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/duynguyen/.nvm/versions/node/v12.22.1/bin/node /Users/duynguyen/.nvm/versions/node/v12.22.1/bin/yarn
+  /Users/duynguyen/.nvm/versions/node/v12.22.1/bin/node /Users/duynguyen/.nvm/versions/node/v12.22.1/bin/yarn add @aws-sdk/client-elasticcache
 
 PATH: 
-  /Users/duynguyen/.nvm/versions/node/v12.22.1/bin:/Users/duynguyen/.zplug/bin:/Users/duynguyen/istio-1.11.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+  /Users/duynguyen/.nvm/versions/node/v12.22.1/bin:/Users/duynguyen/.zplug/bin:/Users/duynguyen/istio-1.11.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/duynguyen/.nvm/versions/node/v12.22.1/bin
 
 Yarn version: 
   1.22.10
@@ -14,12 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/duynguyen/projects/accenture-task/backend/package.json: Unexpected token } in JSON at position 702
-      at JSON.parse (<anonymous>)
-      at /Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (/Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:310:30)
-      at /Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/@aws-sdk%2fclient-elasticcache: Not found
+      at Request.params.callback [as _callback] (/Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:314:20)
+      at Request.<anonymous> (/Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:314:20)
+      at IncomingMessage.<anonymous> (/Users/duynguyen/.nvm/versions/node/v12.22.1/lib/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:420:28)
+      at IncomingMessage.emit (events.js:326:22)
+      at endReadableNT (_stream_readable.js:1241:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -28,9 +33,11 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "start:dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
+      "start:prod": "node server.js",
       "watch-ts": "tsc -w",
       "watch-node": "nodemon dist/server.js",
-      "test": "jest"
+      "test": "jest",
+      "build": "tsc"
     },
     "dependencies": {
       "@types/cors": "^2.8.12",
@@ -46,7 +53,7 @@ npm manifest:
       "@types/jest": "^27.0.2",
       "jest": "^27.3.0",
       "ts-jest": "^27.0.7",
-      "ts-node": "^10.3.0",
+      "ts-node": "^10.3.0"
     }
   }
 
