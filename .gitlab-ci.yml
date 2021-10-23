@@ -63,11 +63,11 @@ test-frontend:
   image: cypress/base:14.15.0
   stage: test
   before_script:
+    - yarn global add pm2
+    - pm2 start --name backend backend/dist/server.js
     - cd frontend-react
     - yarn install --cache-folder .yarn --frozen-lockfile
   script:
-    - yarn global add pm2
-    - pm2 start --name backend backend/dist/server.js
     - yarn add -D start-server-and-test
     - yarn run test
 
