@@ -64,6 +64,7 @@ test-frontend:
   stage: test
   before_script:
     - yarn global add pm2
+    - yarn global add serve
     - pm2 start --name backend backend/dist/server.js
     - cd frontend-react
     - yarn install --cache-folder .yarn --frozen-lockfile

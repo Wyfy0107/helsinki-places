@@ -17,6 +17,6 @@ hooks:
       runas: ubuntu
 
   ApplicationStop:
-    - location: scripts/codedeploy/ubuntu/app-stop.sh
+    - location: scripts/app_stop.sh
       timeout: 3600
       runas: ubuntu
