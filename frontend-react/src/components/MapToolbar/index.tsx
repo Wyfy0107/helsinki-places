@@ -74,9 +74,7 @@ function MapToolbar({
               'aria-labelledby': 'menu-icon',
             }}
           >
-            <MenuItem onClick={handleOpenDialog} id='filter-menu-item'>
-              Filter
-            </MenuItem>
+            <MenuItem onClick={handleOpenDialog}>Filter</MenuItem>
           </Menu>
           <Typography variant='h6' sx={{ flexGrow: 1 }}>
             Map View

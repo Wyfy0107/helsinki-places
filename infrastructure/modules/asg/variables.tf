@@ -15,7 +15,7 @@ variable "public_subnets_cidr" {
   type = list(string)
 }
 
-variable "certificate_arn" {
+variable "server_certificate_arn" {
   type = string
 }
 

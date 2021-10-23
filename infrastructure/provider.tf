@@ -26,12 +26,12 @@ module "vpc" {
 module "asg" {
   source = "./modules/asg"
 
-  project             = var.project
-  environment         = var.environment
-  vpc_id              = module.vpc.vpc_id
-  vpc_subnets_id      = module.vpc.vpc_subnets_id
-  server_domain_name  = var.server_domain_name
-  vpc_cidr            = var.vpc_cidr
-  public_subnets_cidr = var.public_subnets_cidr
-  certificate_arn     = var.certificate_arn
+  project                = var.project
+  environment            = var.environment
+  vpc_id                 = module.vpc.vpc_id
+  vpc_subnets_id         = module.vpc.vpc_subnets_id
+  server_domain_name     = var.server_domain_name
+  vpc_cidr               = var.vpc_cidr
+  public_subnets_cidr    = var.public_subnets_cidr
+  server_certificate_arn = var.server_certificate_arn
 }

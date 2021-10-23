@@ -18,8 +18,14 @@ variable "environment" {
   type = string
 }
 
-variable "certificate_arn" {
-  type = string
+variable "server_certificate_arn" {
+  description = "cert for backend server"
+  type        = string
+}
+
+variable "web_certificate_arn" {
+  description = "cert for s3 webstire"
+  type        = string
 }
 
 variable "vpc_cidr" {

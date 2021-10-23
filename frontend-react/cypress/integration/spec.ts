@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-import fake from './fake.json'
 
 describe('My Helsinki Places Website', () => {
   beforeEach(() => {
@@ -34,13 +33,5 @@ describe('My Helsinki Places Website', () => {
     cy.get('#view-switch').click()
     cy.location('pathname').should('eq', '/')
     cy.get('h6').contains('Helsinki Places')
-  })
-
-  it('should open filter dialog in map view', () => {
-    cy.get('#view-switch').click()
-    cy.get('#menu-icon').click()
-    cy.get('#filter-menu-item').contains('Filter')
-    cy.get('#filter-menu-item').click()
-    cy.contains('How many places you want to see?')
   })
 })
