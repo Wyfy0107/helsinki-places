@@ -35,6 +35,7 @@ build-backend:
     policy: pull-push
   script:
     - cd backend
+    - yarn add -D typescript
     - yarn run build
     - cp -R scripts dist
     - cp appspec.yml package.json yarn.lock dist
@@ -52,6 +53,10 @@ build-frontend:
   script:
     - cd frontend-react
     - yarn run build
+  artifacts:
+    paths:
+      - frontend-react/build
+    expire_in: 1 hour
 
 # test-backend:
 #   stage: test
