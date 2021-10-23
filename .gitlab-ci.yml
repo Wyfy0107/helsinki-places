@@ -56,7 +56,6 @@ test-backend:
     - cd backend
     - yarn install --cache-folder .yarn --frozen-lockfile
   script:
-    - cd backend
     - yarn add -D jest
     - yarn run test
 
@@ -64,11 +63,11 @@ test-frontend:
   image: cypress/base:14.15.0
   stage: test
   before_script:
+    - cd frontend-react
     - yarn install --cache-folder .yarn --frozen-lockfile
   script:
     - yarn global add pm2
     - pm2 start --name backend backend/dist/server.js
-    - cd frontend-react
     - yarn add -D start-server-and-test
     - yarn run test
 

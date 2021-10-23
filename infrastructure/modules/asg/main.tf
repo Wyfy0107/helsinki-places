@@ -7,7 +7,7 @@ locals {
 
 resource "aws_launch_configuration" "server" {
   name_prefix   = "${var.project}-${var.environment}"
-  image_id      = data.aws_ami.ubuntu-18_04.id
+  image_id      = data.aws_ami.ubuntu-image.id
   instance_type = "t3.micro"
 
 
