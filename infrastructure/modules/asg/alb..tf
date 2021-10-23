@@ -13,13 +13,17 @@ resource "aws_lb" "server" {
 }
 
 resource "aws_lb_target_group" "server" {
-  name     = "${var.project}-${var.environment}"
-  port     = 5000
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name_prefix = "target"
+  port        = 5000
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
 
   health_check {
     unhealthy_threshold = 6
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 

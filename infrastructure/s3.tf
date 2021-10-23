@@ -4,7 +4,6 @@ locals {
     Project     = var.project
     Environment = var.environment
   }
-  default_certificate = true
 }
 
 data "aws_iam_policy_document" "s3_policy" {
@@ -112,9 +111,8 @@ resource "aws_cloudfront_distribution" "web" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = local.default_certificate
-    acm_certificate_arn            = var.web_certificate_arn
-    ssl_support_method             = "sni-only"
+    acm_certificate_arn = var.web_certificate_arn
+    ssl_support_method  = "sni-only"
   }
 }
 

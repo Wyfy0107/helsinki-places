@@ -22,6 +22,10 @@ install-backend:
 
 install-frontend:
   stage: install
+  cache:
+    paths:
+      - frontend-react/build
+    policy: pull-push
   script:
     - cd frontend-react
     - yarn install --cache-folder ../.yarn
@@ -61,6 +65,7 @@ test-backend:
   stage: test
   script:
     - cd backend
+    - yarn add -D jest
     - yarn run test
 
 test-frontend:
