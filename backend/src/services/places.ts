@@ -11,8 +11,6 @@ import Redis from 'ioredis'
 const client = new Redis({
   port: 6379,
   host: 'cluster-example.kbg6d4.0001.eun1.cache.amazonaws.com',
-  username: 'wyfy',
-  password: 'nguyenduy01071998',
 })
 
 client.on('error', err => {
@@ -24,20 +22,21 @@ const getAll = async (
   limit?: number
 ): Promise<PlacesResponse> => {
   try {
-    const {
-      data: { data, meta },
-    } = await axios.get<PlacesResponse>(
-      'https://open-api.myhelsinki.fi/v1/places/?language_filter=en'
-    )
-
     if (page && limit) {
+      const cacheKey = `${page}-${limit}`
+      const cache = await client.get(cacheKey)
+
+      if (cache) {
+        return JSON.parse(cache)
+      }
+
       const {
         data: { data, meta },
       } = await axios.get<PlacesResponse>(
         `https://open-api.myhelsinki.fi/v1/places/?language_filter=en&start=${page}&limit=${limit}`
       )
 
-      return {
+      const response = {
         meta: {
           ...meta,
           page,
@@ -45,12 +44,27 @@ const getAll = async (
         },
         data,
       }
+      await client.set(cacheKey, JSON.stringify(response))
+      return response
     }
 
-    return {
+    const cacheAll = await client.get('all')
+    if (cacheAll) {
+      return JSON.parse(cacheAll)
+    }
+
+    const {
+      data: { data, meta },
+    } = await axios.get<PlacesResponse>(
+      'https://open-api.myhelsinki.fi/v1/places/?language_filter=en'
+    )
+
+    const response = {
       meta: { ...meta, page: null, limit: null },
       data,
     }
+    await client.set('all', JSON.stringify(response))
+    return response
   } catch (error) {
     throw new InternalServerError()
   }
