@@ -9,4 +9,9 @@ cd /home/ubuntu
 chmod +x ./install
 sudo ./install auto > /tmp/logfile
 
+curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
+sudo apt update
+sudo apt -y install nodes
+sudo npm i -g pm2 
+
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app

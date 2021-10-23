@@ -3,8 +3,10 @@ image: node:latest
 cache:
   paths:
     - backend/node_modules
+    - backend/.yarn
     - frontend-react/node_modules
-    - .yarn
+    - frontend-react/.yarn
+  policy: pull-push
 
 stages:
   - build
@@ -14,10 +16,15 @@ stages:
 
 install-backend:
   stage: build
+  cache:
+    key: backend
+    paths:
+      - backend/node_modules
+      - backend/.yarn
+    policy: pull-push
   script:
-    - yarn config set cache-folder .yarn
     - cd backend
-    - yarn install --cache-folder ~/.yarn
+    - yarn install --cache-folder .yarn
     - yarn run build
     - cp -R scripts dist
     - cp appspec.yml package.json yarn.lock dist
@@ -29,13 +36,14 @@ install-backend:
 install-frontend:
   stage: build
   cache:
+    key: frontend
     paths:
-      - frontend-react/build
+      - frontend-react/node_modules
+      - frontend-react/.yarn
     policy: pull-push
   script:
-    - yarn config set cache-folder .yarn
     - cd frontend-react
-    - yarn install --cache-folder ~/.yarn
+    - yarn install --cache-folder .yarn
     - yarn run build
   artifacts:
     paths:
@@ -45,8 +53,8 @@ install-frontend:
 test-backend:
   stage: test
   before_script:
-    - yarn config set cache-folder .yarn
-    - yarn install --cache-folder ~/.yarn --frozen-lockfile
+    - cd backend
+    - yarn install --cache-folder .yarn --frozen-lockfile
   script:
     - cd backend
     - yarn add -D jest
@@ -56,8 +64,7 @@ test-frontend:
   image: cypress/base:14.15.0
   stage: test
   before_script:
-    - yarn config set cache-folder .yarn
-    - yarn install --frozen-lockfile
+    - yarn install --cache-folder .yarn --frozen-lockfile
   script:
     - yarn global add pm2
     - pm2 start --name backend backend/dist/server.js

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /home/ubuntu/app
-sudo pm2 start server.js
+sudo pm2 start --name helsinki-places server.js
