@@ -37,9 +37,16 @@ build-backend:
     - yarn run build
     - cp -R scripts dist
     - cp appspec.yml package.json yarn.lock dist
+  artifacts:
+    paths:
+      - backend/dist
+    expire_in: 1 hour
 
 build-frontend:
   stage: build
+  cache:
+    paths:
+      - frontend-react/build
   script:
     - cd frontend-react
     - yarn run build
