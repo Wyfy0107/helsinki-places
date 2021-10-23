@@ -83,7 +83,7 @@ revision-push:
       --ignore-hidden-files
       --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
       --source backend/dist
-    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION  --size-only
+    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
 
 backend-deploy:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
