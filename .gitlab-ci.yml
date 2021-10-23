@@ -33,22 +33,22 @@ install-backend:
       - backend/dist
     expire_in: 15 minute
 
-install-frontend:
-  stage: build
-  cache:
-    key: frontend
-    paths:
-      - frontend-react/node_modules
-      - frontend-react/.yarn
-    policy: pull-push
-  script:
-    - cd frontend-react
-    - yarn install --cache-folder .yarn
-    - yarn run build
-  artifacts:
-    paths:
-      - frontend-react/build
-    expire_in: 15 minute
+# install-frontend:
+#   stage: build
+#   cache:
+#     key: frontend
+#     paths:
+#       - frontend-react/node_modules
+#       - frontend-react/.yarn
+#     policy: pull-push
+#   script:
+#     - cd frontend-react
+#     - yarn install --cache-folder .yarn
+#     - yarn run build
+#   artifacts:
+#     paths:
+#       - frontend-react/build
+#     expire_in: 15 minute
 
 # test-backend:
 #   stage: test
@@ -83,7 +83,7 @@ revision-push:
       --ignore-hidden-files
       --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
       --source backend/dist
-    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
+    # - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
 
 backend-deploy:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
