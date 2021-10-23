@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pm2 delete helsinki-places || echo "no pm2 process running"
+~/.yarn/bin/pm2 stop helsinki-places || true
+~/.yarn/bin/pm2 delete helsinki-places || true

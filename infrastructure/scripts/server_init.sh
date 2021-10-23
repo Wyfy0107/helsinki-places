@@ -11,8 +11,8 @@ sudo apt-get install -y stress-ng
 
 curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt -y install nodejs
-sudo npm i -g pm2 
 sudo npm i -g yarn
+sudo yarn global add pm2 
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
 

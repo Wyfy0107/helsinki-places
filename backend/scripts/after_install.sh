@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /home/ubuntu/app
-sudo yarn install
+~/.yarn/bin/yarn
