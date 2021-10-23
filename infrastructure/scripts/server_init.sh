@@ -8,10 +8,6 @@ sudo apt-get install -y ruby-full
 sudo apt-get install -y wget
 sudo apt-get install -y stress-ng
 
-cd /home/ubuntu
-wget https://aws-codedeploy-eu-north-1.s3.eu-north-1.amazonaws.com/latest/install
-chmod +x ./install
-sudo ./install auto > /tmp/logfile
 
 curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt -y install nodejs
@@ -19,3 +15,8 @@ sudo npm i -g pm2
 sudo npm i -g yarn
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
+
+cd /home/ubuntu
+wget https://aws-codedeploy-eu-north-1.s3.eu-north-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto > /tmp/logfile

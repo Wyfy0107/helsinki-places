@@ -20,7 +20,7 @@ resource "aws_lb_target_group" "server" {
 
   health_check {
     unhealthy_threshold = 6
-    path                = "health-check"
+    path                = "/health-check"
   }
 
   lifecycle {
