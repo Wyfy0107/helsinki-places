@@ -26,8 +26,6 @@ endpoint=$(aws ssm get-parameters --with-decryption \
 --names "/production/server/redis/port" "/production/server/redis/endpoint" \
 --region eu-north-1 | jq ".Parameters[1].Value")
 
-
-
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
 
 cat > /home/ubuntu/app/.env <<EOF
