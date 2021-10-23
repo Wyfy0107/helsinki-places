@@ -1,4 +1,5 @@
 #!/bin/bash
+exec > >(sudo tee /var/log/user-data.log) 2>&1
 
 sudo apt-get update
 sudo apt install -y ruby-full
