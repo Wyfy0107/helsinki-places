@@ -26,11 +26,12 @@ resource "aws_launch_configuration" "server" {
 }
 
 resource "aws_autoscaling_group" "server" {
-  name_prefix      = "${var.project}-${var.environment}"
-  max_size         = 3
-  min_size         = 1
-  desired_capacity = 2
-  default_cooldown = 60
+  name_prefix               = "${var.project}-${var.environment}"
+  max_size                  = 3
+  min_size                  = 1
+  desired_capacity          = 2
+  default_cooldown          = 60
+  health_check_grace_period = 300
 
   vpc_zone_identifier  = var.vpc_subnets_id
   launch_configuration = aws_launch_configuration.server.name

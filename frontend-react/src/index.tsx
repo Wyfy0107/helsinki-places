@@ -11,12 +11,6 @@ import './index.css'
 
 import ErrorBoundary from './components/Error/ErrorBoundary'
 
-// if (process.env.NODE_ENV === 'production') {
-//   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_PROD as string
-// } else {
-//   axios.defaults.baseURL = process.env.REACT_APP_BACKEND_DEV as string
-// }
-
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND as string
 
 ReactDOM.render(

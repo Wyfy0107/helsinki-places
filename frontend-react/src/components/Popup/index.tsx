@@ -28,7 +28,7 @@ function CustomPopup({
 
     if (clickedMarkerId) {
       axios
-        .get<Place>(`/api/v1/places/${clickedMarkerId}`, {
+        .get<Place>(`/places/${clickedMarkerId}`, {
           cancelToken: source.token,
         })
         .then(res => {
