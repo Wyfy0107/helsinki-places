@@ -16,5 +16,6 @@ sudo ./install auto > /tmp/logfile
 curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt -y install nodejs
 sudo npm i -g pm2 
+sudo npm i -g yarn
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
