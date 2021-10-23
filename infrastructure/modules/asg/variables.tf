@@ -30,3 +30,8 @@ variable "vpc_id" {
 variable "vpc_subnets_id" {
   type = list(string)
 }
+
+variable "web_s3_bucket_arn" {
+  description = "arn of website bucket"
+  type        = string
+}

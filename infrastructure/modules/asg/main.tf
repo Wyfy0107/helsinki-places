@@ -6,10 +6,10 @@ locals {
 }
 
 resource "aws_launch_configuration" "server" {
-  name_prefix   = "${var.project}-${var.environment}"
-  image_id      = data.aws_ami.ubuntu-image.id
-  instance_type = "t3.micro"
-
+  name_prefix          = "${var.project}-${var.environment}"
+  image_id             = data.aws_ami.ubuntu-image.id
+  instance_type        = "t3.micro"
+  iam_instance_profile = aws_iam_instance_profile.ec2.name
 
   key_name                    = aws_key_pair.ssh.key_name
   associate_public_ip_address = true
@@ -66,6 +66,47 @@ resource "aws_autoscaling_policy" "target_tracking" {
     target_value     = 50
     disable_scale_in = false
   }
+}
+
+resource "aws_iam_role" "ec2" {
+  name        = "${var.project}-${var.environment}"
+  description = "allow codedeploy agent to download bundle"
+  assume_role_policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Action" : "sts:AssumeRole",
+          "Principal" : {
+            "Service" : "ec2.amazonaws.com"
+          }
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_role_policy" "ec2" {
+  name = "${var.project}-${var.environment}"
+  role = aws_iam_role.ec2.id
+  policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Action" : "s3:GetObject",
+          "Resource" : "${var.web_s3_bucket_arn}/*"
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_instance_profile" "ec2" {
+  name = "${var.project}-${var.environment}"
+  role = aws_iam_role.ec2.id
 }
 
 resource "aws_key_pair" "ssh" {
