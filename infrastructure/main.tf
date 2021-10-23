@@ -64,11 +64,10 @@ resource "aws_security_group" "redis" {
   vpc_id = module.vpc.vpc_id
 
   ingress {
-    from_port = 6379
-    to_port   = 6379
-    protocol  = "tcp"
-    # security_groups = [module.asg.ec2_sgs_id]
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [module.asg.ec2_sgs_id]
   }
 
   egress {
@@ -84,12 +83,4 @@ resource "aws_security_group" "redis" {
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "elasticcache-subnet-group"
   subnet_ids = module.vpc.vpc_subnets_id
-}
-
-resource "aws_elasticache_user" "test" {
-  user_id       = "wyfy0107"
-  user_name     = "wyfy"
-  access_string = "on ~app::* -@all +@read +@hash +@bitmap +@geo -setbit -bitfield -hset -hsetnx -hmset -hincrby -hincrbyfloat -hdel -bitop -geoadd -georadius -georadiusbymember"
-  engine        = "REDIS"
-  passwords     = ["nguyenduy01071998"]
 }

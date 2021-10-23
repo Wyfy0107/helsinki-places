@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pm2 delete helsinki-places  >& /dev/null || echo "no pm2 process running"
+pm2 delete helsinki-places || echo "no pm2 process running"
