@@ -58,11 +58,18 @@ const getAll = async (
 }
 
 const getById = async (id: string) => {
+  const cacheKey = `getOne-${id}`
+  const cache = await client.get(cacheKey)
+  if (cache) {
+    return JSON.parse(cache)
+  }
+
   try {
     const result = await axios.get<Place>(
       `https://open-api.myhelsinki.fi/v1/place/${id}`
     )
 
+    await client.set('cacheKey', JSON.stringify(result.data))
     return result.data
   } catch (error) {
     throw new InternalServerError()
