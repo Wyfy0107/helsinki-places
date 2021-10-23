@@ -5,9 +5,7 @@ cache:
     - backend/node_modules
     - frontend-react/node_modules
     - frontend-react/build
-    - ~/.cache/Cypress
     - .yarn
-    - ~/.config/yarn/global
 
 stages:
   - install
@@ -65,7 +63,7 @@ build-frontend:
 #     - yarn run test
 
 test-frontend:
-  image: cypress/base:14
+  image: cypress/base:14.15.0
   stage: test
   script:
     - yarn global add pm2
