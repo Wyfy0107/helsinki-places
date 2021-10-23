@@ -94,4 +94,4 @@ backend-deploy:
       --deployment-config-name CodeDeployDefault.OneAtATime
       --deployment-group-name MyHelsinkiDeploymentGroup
       --file-exists-behavior OVERWRITE
-      --s3-location bucket=$S3_BACKEND_LOCATION,key=helsinki-places-server.zip,bundleType=zip
+      --s3-location bucket=$S3_BACKEND_LOCATION_NAME,key=helsinki-places-server.zip,bundleType=zip
