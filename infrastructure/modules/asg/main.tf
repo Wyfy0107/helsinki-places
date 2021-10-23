@@ -7,8 +7,9 @@ locals {
 
 resource "aws_launch_configuration" "server" {
   name_prefix   = "${var.project}-${var.environment}"
-  image_id      = data.aws_ami.ubuntu-20_04.id
-  instance_type = "t2.micro"
+  image_id      = data.aws_ami.ubuntu-18_04.id
+  instance_type = "t3.micro"
+
 
   key_name                    = aws_key_pair.ssh.key_name
   associate_public_ip_address = true
@@ -28,11 +29,12 @@ resource "aws_autoscaling_group" "server" {
   name_prefix      = "${var.project}-${var.environment}"
   max_size         = 3
   min_size         = 1
+  desired_capacity = 2
   default_cooldown = 60
 
   vpc_zone_identifier  = var.vpc_subnets_id
   launch_configuration = aws_launch_configuration.server.name
-  health_check_type    = "ELB"
+  health_check_type    = "EC2"
   termination_policies = ["OldestInstance", "OldestLaunchConfiguration"]
   target_group_arns = [
     aws_lb_target_group.server.arn
@@ -47,7 +49,6 @@ resource "aws_autoscaling_group" "server" {
   lifecycle {
     create_before_destroy = true
   }
-
 }
 
 resource "aws_autoscaling_policy" "target_tracking" {
@@ -56,12 +57,10 @@ resource "aws_autoscaling_policy" "target_tracking" {
   policy_type            = "TargetTrackingScaling"
   autoscaling_group_name = aws_autoscaling_group.server.name
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 60
-  scaling_adjustment     = 1
 
   target_tracking_configuration {
     predefined_metric_specification {
-      predefined_metric_type = "EC2SpotFleetRequestAverageCPUUtilization"
+      predefined_metric_type = "ASGAverageCPUUtilization"
     }
     target_value     = 50
     disable_scale_in = false
@@ -71,16 +70,4 @@ resource "aws_autoscaling_policy" "target_tracking" {
 resource "aws_key_pair" "ssh" {
   key_name   = "${var.project}-${var.environment}-ec2-ssh-key"
   public_key = file("${path.module}/instance.key.pub")
-}
-
-resource "aws_route53_record" "web" {
-  zone_id = data.aws_route53_zone.selected.zone_id
-  name    = var.server_domain_name
-  type    = "A"
-
-  alias {
-    name                   = aws_lb.server.dns_name
-    zone_id                = aws_lb.server.zone_id
-    evaluate_target_health = true
-  }
 }
