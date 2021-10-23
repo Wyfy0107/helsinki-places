@@ -16,6 +16,7 @@ sudo npm i -g yarn
 sudo yarn global add pm2 
 
 sudo apt-get -y install awscli
+sudo apy-get -y install jq
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
 

@@ -9,7 +9,7 @@ endpoint=$(aws ssm get-parameters --with-decryption \
 --region eu-north-1 | jq ".Parameters[1].Value")
 
 cd /home/ubuntu/app
-cat > .env <<EOF
+sudo cat > .env <<EOF
 PORT=${port}
 ENDPOINT=${endpoint}
 EOF

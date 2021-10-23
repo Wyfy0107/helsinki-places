@@ -35,7 +35,7 @@ resource "aws_autoscaling_group" "server" {
 
   vpc_zone_identifier  = var.vpc_subnets_id
   launch_configuration = aws_launch_configuration.server.name
-  health_check_type    = "EC2"
+  health_check_type    = "ELB"
   termination_policies = ["OldestInstance", "OldestLaunchConfiguration"]
   target_group_arns = [
     aws_lb_target_group.server.arn
@@ -54,7 +54,6 @@ resource "aws_autoscaling_group" "server" {
 }
 
 resource "aws_autoscaling_policy" "target_tracking" {
-  count                  = 1
   name                   = "${var.project}-${var.environment}-target-tracking-policy"
   policy_type            = "TargetTrackingScaling"
   autoscaling_group_name = aws_autoscaling_group.server.name
