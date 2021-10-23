@@ -4,7 +4,6 @@ cache:
   paths:
     - backend/node_modules
     - frontend-react/node_modules
-    - frontend-react/build
     - .yarn
 
 stages:
@@ -18,7 +17,7 @@ install-backend:
   script:
     - yarn config set cache-folder .yarn
     - cd backend
-    - yarn install
+    - yarn install --cache-folder ~/.yarn
     - yarn run build
     - cp -R scripts dist
     - cp appspec.yml package.json yarn.lock dist
@@ -36,7 +35,7 @@ install-frontend:
   script:
     - yarn config set cache-folder .yarn
     - cd frontend-react
-    - yarn install
+    - yarn install --cache-folder ~/.yarn
     - yarn run build
   artifacts:
     paths:
@@ -47,7 +46,7 @@ test-backend:
   stage: test
   before_script:
     - yarn config set cache-folder .yarn
-    - yarn install --frozen-lockfile
+    - yarn install --cache-folder ~/.yarn --frozen-lockfile
   script:
     - cd backend
     - yarn add -D jest
@@ -77,7 +76,7 @@ revision-push:
       --ignore-hidden-files
       --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
       --source backend/dist
-    - aws s3 sync frontend/build $S3_FRONTEND_LOCATION  --size-only
+    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION  --size-only
 
 backend-deploy:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
