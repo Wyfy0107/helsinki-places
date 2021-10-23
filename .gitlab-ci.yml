@@ -32,6 +32,7 @@ build-backend:
   cache:
     paths:
       - backend/dist
+    policy: pull-push
   script:
     - cd backend
     - yarn run build
@@ -47,6 +48,7 @@ build-frontend:
   cache:
     paths:
       - frontend-react/build
+    policy: pull-push
   script:
     - cd frontend-react
     - yarn run build
@@ -58,6 +60,7 @@ build-frontend:
 #     - yarn run test
 
 test-frontend:
+  image: cypress/base:14
   stage: test
   script:
     - yarn global add pm2

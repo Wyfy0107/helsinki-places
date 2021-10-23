@@ -51,7 +51,7 @@ resource "aws_lb_listener" "https" {
   }
 }
 
-resource "aws_route53_record" "ecs" {
+resource "aws_route53_record" "alb" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = "places.mlem-mlem.net"
   type    = "A"
