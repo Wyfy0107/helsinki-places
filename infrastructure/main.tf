@@ -46,7 +46,7 @@ resource "aws_codedeploy_deployment_group" "server" {
 }
 
 resource "aws_elasticache_cluster" "server" {
-  cluster_id           = "cluster-example"
+  cluster_id           = "helsinki-places-redis-cache"
   engine               = "redis"
   node_type            = "cache.t3.micro"
   num_cache_nodes      = 1
@@ -83,4 +83,31 @@ resource "aws_security_group" "redis" {
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "elasticcache-subnet-group"
   subnet_ids = module.vpc.vpc_subnets_id
+}
+
+resource "aws_ssm_parameter" "endpoint" {
+  name        = "/production/server/redis/endpoint"
+  description = "redis secret"
+  type        = "SecureString"
+  value       = aws_elasticache_cluster.server.cache_nodes[0].address
+  key_id      = aws_kms_key.secret.id
+
+  tags = local.common_tags
+}
+
+resource "aws_ssm_parameter" "port" {
+  name        = "/production/server/redis/port"
+  description = "redis secret"
+  type        = "SecureString"
+  value       = aws_elasticache_cluster.server.cache_nodes[0].port
+  key_id      = aws_kms_key.secret.id
+
+  tags = local.common_tags
+}
+
+
+resource "aws_kms_key" "secret" {
+  description             = "redis secret encryption"
+  key_usage               = "ENCRYPT_DECRYPT"
+  deletion_window_in_days = 10
 }

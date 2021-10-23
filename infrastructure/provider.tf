@@ -35,4 +35,5 @@ module "asg" {
   public_subnets_cidr    = var.public_subnets_cidr
   server_certificate_arn = var.server_certificate_arn
   web_s3_bucket_arn      = aws_s3_bucket.revision.arn
+  kms_arn                = aws_kms_key.secret.arn
 }

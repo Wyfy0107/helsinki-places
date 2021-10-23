@@ -99,6 +99,18 @@ resource "aws_iam_role_policy" "ec2" {
           "Effect" : "Allow",
           "Action" : "s3:GetObject",
           "Resource" : "${var.web_s3_bucket_arn}/*"
+        },
+        {
+          "Effect" : "Allow",
+          "Action" : "ssm:GetParameters",
+          "Resource" : "*"
+        },
+        {
+          "Effect" : "Allow",
+          "Action" : [
+            "kms:Decrypt"
+          ],
+          "Resource" : "${var.kms_arn}"
         }
       ]
     }

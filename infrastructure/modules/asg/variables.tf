@@ -35,3 +35,7 @@ variable "web_s3_bucket_arn" {
   description = "arn of website bucket"
   type        = string
 }
+
+variable "kms_arn" {
+  type = string
+}

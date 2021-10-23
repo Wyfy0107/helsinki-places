@@ -43,3 +43,5 @@ variable "web_domain_name" {
 variable "server_domain_name" {
   type = string
 }
+
+

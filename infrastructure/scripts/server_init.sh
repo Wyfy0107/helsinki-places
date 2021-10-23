@@ -12,8 +12,10 @@ sudo apt-get install -y stress-ng
 curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt -y install nodejs
 
-curl -o- -L https://yarnpkg.com/install.sh | bash
+sudo npm i -g yarn
 sudo yarn global add pm2 
+
+sudo apt-get -y install awscli
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
 

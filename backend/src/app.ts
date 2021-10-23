@@ -6,10 +6,14 @@ import healthCheckRouter from './routers/healthCheck'
 import errorHandler from './middlewares/errorHandler'
 
 const prefix = '/api/v1'
+const isProd = process.env.NODE_ENV === 'production'
 
 const app = express()
 
-app.use(cors())
+if (!isProd) {
+  app.use(cors())
+}
+
 app.use(express.json())
 
 app.use(`${prefix}/places`, placesRouter)
