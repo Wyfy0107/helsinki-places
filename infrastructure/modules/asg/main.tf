@@ -125,3 +125,36 @@ resource "aws_key_pair" "ssh" {
   key_name   = "${var.project}-${var.environment}-ec2-ssh-key"
   public_key = file("${path.module}/instance.key.pub")
 }
+
+#### testing
+resource "aws_instance" "test" {
+  ami                         = data.aws_ami.ubuntu-image.id
+  instance_type               = "t3.micro"
+  subnet_id                   = var.vpc_subnets_id[0]
+  key_name                    = aws_key_pair.ssh.key_name
+  user_data                   = file("${path.module}/../../scripts/server_init.sh")
+  associate_public_ip_address = true
+
+  vpc_security_group_ids = [aws_security_group.test.id]
+  tags                   = local.common_tags
+}
+
+resource "aws_security_group" "test" {
+  name        = "testing"
+  description = "security group for ec2"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+  }
+
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+  }
+}
