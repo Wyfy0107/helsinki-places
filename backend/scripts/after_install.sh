@@ -11,7 +11,7 @@ endpoint=$(aws ssm get-parameters --with-decryption \
 --names "/production/server/redis/port" "/production/server/redis/endpoint" \
 --region eu-north-1 | jq ".Parameters[1].Value")
 
-sudo cat > .env <<EOF
+cat > .env <<EOF
 PORT=${port}
 ENDPOINT=${endpoint}
 EOF
