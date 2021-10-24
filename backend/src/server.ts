@@ -5,8 +5,12 @@ import app from './app'
 
 dotenv.config()
 
+console.log('port env', process.env.REDIS_PORT)
 const redisPort = Number(process.env.REDIS_PORT || 6379)
+console.log('redis port', redisPort)
 const redisHost = process.env.ENDPOINT || 'localhost'
+console.log('host env', process.env.ENDPOINT)
+console.log('redis host', redisHost)
 
 export const client = new Redis({
   port: redisPort,
