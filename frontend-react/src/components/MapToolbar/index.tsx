@@ -51,8 +51,8 @@ function MapToolbar({
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+    <Box>
+      <AppBar>
         <Toolbar>
           <IconButton
             size='large'
