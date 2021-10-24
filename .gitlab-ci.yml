@@ -53,7 +53,7 @@ test-backend:
     - cd backend
     - yarn install --cache-folder .yarn --frozen-lockfile
   script:
-    - yarn add -D jest
+    - yarn global add jest
     - yarn run test
 
 test-frontend:
@@ -73,7 +73,7 @@ test-frontend:
     - cd frontend-react
     - yarn install --cache-folder .yarn --frozen-lockfile
   script:
-    - yarn add -D start-server-and-test
+    - yarn global add start-server-and-test
     - yarn run test
 
 revision-push:
