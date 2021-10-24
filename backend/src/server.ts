@@ -1,4 +1,3 @@
-import redis from 'redis'
 import Redis from 'ioredis'
 import dotenv from 'dotenv'
 
@@ -6,9 +5,12 @@ import app from './app'
 
 dotenv.config()
 
+const redisPort = Number(process.env.REDIS_PORT || 6379)
+const redisHost = process.env.ENDPOINT || 'localhost'
+
 export const client = new Redis({
-  port: Number((process.env.REDIS_PORT as string) || 6379),
-  host: (process.env.ENDPOINT as string) || 'redis',
+  port: redisPort,
+  host: redisHost,
 })
 
 client.on('error', err => {
