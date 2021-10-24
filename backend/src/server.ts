@@ -16,7 +16,7 @@ console.log('redis host', redisHost)
 
 if (isTestEnv) {
   redisPort = 6379
-  redisHost = 'localhost'
+  redisHost = 'redis'
 }
 
 export const client = new Redis({
