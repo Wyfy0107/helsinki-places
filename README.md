@@ -1,6 +1,6 @@
 # Helsinki Places
 
-This web application is built to display places of interest in Helsinki city. Visit [My Helsinki](helsinki-places.mlem-mlem.net) here
+This web application is built to display places of interest in Helsinki city. Visit [My Helsinki](https://helsinki-places.mlem-mlem.net) here
 
 ## Project Structure
 
