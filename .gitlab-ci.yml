@@ -33,22 +33,22 @@ install-backend:
       - backend/dist
     expire_in: 15 minute
 
-# install-frontend:
-#   stage: build
-#   cache:
-#     key: frontend
-#     paths:
-#       - frontend-react/node_modules
-#       - frontend-react/.yarn
-#     policy: pull-push
-#   script:
-#     - cd frontend-react
-#     - yarn install --cache-folder .yarn
-#     - yarn run build
-#   artifacts:
-#     paths:
-#       - frontend-react/build
-#     expire_in: 15 minute
+install-frontend:
+  stage: build
+  cache:
+    key: frontend
+    paths:
+      - frontend-react/node_modules
+      - frontend-react/.yarn
+    policy: pull-push
+  script:
+    - cd frontend-react
+    - yarn install --cache-folder .yarn
+    - yarn run build
+  artifacts:
+    paths:
+      - frontend-react/build
+    expire_in: 15 minute
 
 # test-backend:
 #   stage: test
