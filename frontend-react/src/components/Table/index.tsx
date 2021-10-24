@@ -86,7 +86,7 @@ function GenericTable<T extends Resource>({
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[10, 20, 50]}
         component='div'
         count={count || 0}
         rowsPerPage={rowsPerPage}
