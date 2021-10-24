@@ -31,6 +31,7 @@ endpoint=$(aws ssm get-parameters --with-decryption \
 cat > /home/ubuntu/app/.env <<EOF
 REDIS_PORT=${port}
 ENDPOINT=${endpoint}
+NODE_ENV=production
 EOF
 
 cd /home/ubuntu

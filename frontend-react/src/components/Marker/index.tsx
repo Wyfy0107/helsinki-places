@@ -6,19 +6,19 @@ import { Place } from '../../types'
 type MarkerProps = {
   location: Place['location']
   id: string
-  handleMarkerClick: (event: React.MouseEvent<any>, id: string) => void
+  handleMarkerHover: (event: React.MouseEvent<any>, id: string) => void
 }
 
 function CustomMarker({
   location: { lat, lon },
-  handleMarkerClick,
+  handleMarkerHover,
   id,
 }: MarkerProps) {
   return (
     <Marker
       coordinates={[lon, lat]}
       anchor='bottom'
-      onClick={event => handleMarkerClick(event, id)}
+      onMouseEnter={event => handleMarkerHover(event, id)}
     >
       <RoomIcon color='primary' />
     </Marker>

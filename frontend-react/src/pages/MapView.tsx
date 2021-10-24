@@ -28,10 +28,10 @@ function MapView({ checked, handleChange }: MapProps) {
   const [clickedMarkerId, setClickedMarkerId] = useState<string | null>(null)
   const [places, , error] = usePlaces(pagination)
 
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 
-  const handleMarkerClick = (event: React.MouseEvent<any>, id: string) => {
+  const handleMarkerHover = (event: React.MouseEvent<any>, id: string) => {
     setAnchorEl(event.currentTarget)
     setClickedMarkerId(id)
   }
@@ -70,7 +70,7 @@ function MapView({ checked, handleChange }: MapProps) {
             <CustomMarker
               key={p.id}
               location={p.location}
-              handleMarkerClick={handleMarkerClick}
+              handleMarkerHover={handleMarkerHover}
               id={p.id}
             />
           ))}

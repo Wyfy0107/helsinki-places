@@ -6,7 +6,7 @@ import healthCheckRouter from './routers/healthCheck'
 import errorHandler from './middlewares/errorHandler'
 
 const prefix = '/api/v1'
-const isProd = process.env.NODE_ENV === 'production'
+export const isProd = process.env.NODE_ENV === 'production'
 
 const app = express()
 
