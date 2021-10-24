@@ -1,12 +1,12 @@
 image: node:latest
 
-cache:
-  paths:
-    - backend/node_modules
-    - backend/.yarn
-    - frontend-react/node_modules
-    - frontend-react/.yarn
-  policy: pull-push
+# cache:
+#   paths:
+#     - backend/node_modules
+#     - backend/.yarn
+#     - frontend-react/node_modules
+#     - frontend-react/.yarn
+#   policy: pull-push
 
 stages:
   - build
@@ -17,7 +17,6 @@ stages:
 install-backend:
   stage: build
   cache:
-    key: backend
     paths:
       - backend/node_modules
       - backend/.yarn
@@ -36,7 +35,6 @@ install-backend:
 install-frontend:
   stage: build
   cache:
-    key: frontend
     paths:
       - frontend-react/node_modules
       - frontend-react/.yarn
@@ -54,6 +52,11 @@ test-backend:
   stage: test
   services:
     - redis:latest
+  cache:
+    paths:
+      - backend/node_modules
+      - backend/.yarn
+    policy: pull
   before_script:
     - cd backend
     - yarn install --cache-folder .yarn --frozen-lockfile
@@ -66,6 +69,11 @@ test-frontend:
   stage: test
   services:
     - redis:latest
+  cache:
+    paths:
+      - frontend-react/node_modules
+      - frontend-react/.yarn
+    policy: pull
   before_script:
     - yarn global add pm2
     - yarn global add serve
