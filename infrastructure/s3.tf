@@ -72,6 +72,7 @@ resource "aws_cloudfront_origin_access_identity" "web" {
 
 resource "aws_cloudfront_distribution" "web" {
   aliases = [var.web_domain_name]
+  comment = "Helsiki Places Web Distribution"
 
   origin {
     domain_name = aws_s3_bucket.web.bucket_regional_domain_name

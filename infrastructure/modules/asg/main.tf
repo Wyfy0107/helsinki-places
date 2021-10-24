@@ -28,7 +28,7 @@ resource "aws_launch_configuration" "server" {
 resource "aws_autoscaling_group" "server" {
   name_prefix               = "${var.project}-${var.environment}"
   max_size                  = 3
-  min_size                  = 1
+  min_size                  = 2
   desired_capacity          = 2
   default_cooldown          = 60
   health_check_grace_period = 300
@@ -49,7 +49,6 @@ resource "aws_autoscaling_group" "server" {
 
   lifecycle {
     create_before_destroy = true
-    ignore_changes        = [desired_capacity]
   }
 }
 

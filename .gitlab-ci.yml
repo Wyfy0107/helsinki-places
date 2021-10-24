@@ -83,9 +83,9 @@ revision-push:
       --ignore-hidden-files
       --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
       --source backend/dist
-    # - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
+    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
 
-backend-deploy:
+deploy:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   stage: deploy
   script:
@@ -96,3 +96,7 @@ backend-deploy:
       --deployment-group-name MyHelsinkiDeploymentGroup
       --file-exists-behavior OVERWRITE
       --s3-location bucket=$S3_BACKEND_LOCATION_NAME,key=helsinki-places-server.zip,bundleType=zip
+    - >
+      aws cloudfront create-invalidation
+      --distribution-id $DISTRIBUTION_ID
+      --paths "/*"
