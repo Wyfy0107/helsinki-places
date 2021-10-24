@@ -1,0 +1,35 @@
+version: '3'
+services:
+  express:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - '5000:5000'
+    depends_on:
+      - redis
+    volumes:
+      - ./backend:/app
+    environment:
+      REDIS_PORT: 6379
+      ENDPOINT: redis
+      NODE_ENV: development
+  redis:
+    image: 'redis:latest'
+    container_name: redis
+    restart: always
+    command: ['redis-server', '--bind', 'redis', '--port', '6379']
+    volumes:
+      - redis-db:/data
+  react:
+    build:
+      context: ./frontend-react
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    depends_on:
+      - express
+    volumes:
+      - ./frontend-react:/app
+volumes:
+  redis-db:

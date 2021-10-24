@@ -24,7 +24,7 @@ install-backend:
     policy: pull-push
   script:
     - cd backend
-    - yarn install --cache-folder .yarn
+    - yarn install --cache-folder .yarn --frozen-lockfile
     - yarn run build
     - cp -R scripts dist
     - cp appspec.yml package.json yarn.lock dist
@@ -43,7 +43,7 @@ install-frontend:
     policy: pull-push
   script:
     - cd frontend-react
-    - yarn install --cache-folder .yarn
+    - yarn install --cache-folder .yarn --frozen-lockfile
     - yarn run build
   artifacts:
     paths:
