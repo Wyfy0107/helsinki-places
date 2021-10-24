@@ -47,12 +47,12 @@ resource "aws_codedeploy_deployment_group" "server" {
 
 resource "aws_elasticache_cluster" "server" {
   cluster_id           = "helsinki-places-redis-cache"
-  engine               = "redis"
-  node_type            = "cache.t3.micro"
-  num_cache_nodes      = 1
-  parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.10"
-  port                 = 6379
+  engine               = lookup(var.redis_config, "engine")
+  node_type            = lookup(var.redis_config, "node_type")
+  num_cache_nodes      = lookup(var.redis_config, "num_cache_nodes")
+  parameter_group_name = lookup(var.redis_config, "parameter_group_name")
+  engine_version       = lookup(var.redis_config, "engine_version")
+  port                 = lookup(var.redis_config, "port")
   security_group_ids   = [aws_security_group.redis.id]
   subnet_group_name    = aws_elasticache_subnet_group.redis.name
 

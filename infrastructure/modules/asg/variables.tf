@@ -39,3 +39,8 @@ variable "web_s3_bucket_arn" {
 variable "kms_arn" {
   type = string
 }
+
+variable "server_port" {
+  description = "backend port"
+  type        = number
+}

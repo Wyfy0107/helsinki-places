@@ -44,4 +44,11 @@ variable "server_domain_name" {
   type = string
 }
 
+variable "server_port" {
+  description = "backend port"
+  type        = number
+}
 
+variable "redis_config" {
+  type = map(any)
+}

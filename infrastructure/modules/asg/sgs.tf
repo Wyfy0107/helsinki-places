@@ -10,8 +10,8 @@ resource "aws_security_group" "ec2" {
   }
 
   ingress {
-    from_port       = 5000
-    to_port         = 5000
+    from_port       = var.server_port
+    to_port         = var.server_port
     protocol        = "tcp"
     security_groups = [aws_security_group.loadbalancer.id]
   }

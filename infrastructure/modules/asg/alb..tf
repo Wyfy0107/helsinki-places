@@ -14,7 +14,7 @@ resource "aws_lb" "server" {
 
 resource "aws_lb_target_group" "server" {
   name_prefix = "target"
-  port        = 5000
+  port        = var.server_port
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
 
