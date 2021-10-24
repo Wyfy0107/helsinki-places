@@ -1,13 +1,5 @@
 image: node:latest
 
-# cache:
-#   paths:
-#     - backend/node_modules
-#     - backend/.yarn
-#     - frontend-react/node_modules
-#     - frontend-react/.yarn
-#   policy: pull-push
-
 stages:
   - build
   - test
@@ -32,21 +24,21 @@ install-backend:
       - backend/dist
     expire_in: 15 minute
 
-# install-frontend:
-#   stage: build
-#   cache:
-#     paths:
-#       - frontend-react/node_modules
-#       - frontend-react/.yarn
-#     policy: pull-push
-#   script:
-#     - cd frontend-react
-#     - yarn install --cache-folder .yarn --frozen-lockfile
-#     - yarn run build
-#   artifacts:
-#     paths:
-#       - frontend-react/build
-#     expire_in: 15 minute
+install-frontend:
+  stage: build
+  cache:
+    paths:
+      - frontend-react/node_modules
+      - frontend-react/.yarn
+    policy: pull-push
+  script:
+    - cd frontend-react
+    - yarn install --cache-folder .yarn --frozen-lockfile
+    - yarn run build
+  artifacts:
+    paths:
+      - frontend-react/build
+    expire_in: 15 minute
 
 test-backend:
   stage: test
@@ -63,51 +55,52 @@ test-backend:
   script:
     - yarn add -D jest
     - yarn run test
-# test-frontend:
-#   image: cypress/base:14.15.0
-#   stage: test
-#   services:
-#     - redis:latest
-#   cache:
-#     paths:
-#       - frontend-react/node_modules
-#       - frontend-react/.yarn
-#     policy: pull
-#   before_script:
-#     - yarn global add pm2
-#     - yarn global add serve
-#     - pm2 start --name backend backend/dist/server.js
-#     - cd frontend-react
-#     - yarn install --cache-folder .yarn --frozen-lockfile
-#   script:
-#     - yarn add -D start-server-and-test
-#     - yarn run test
 
-# revision-push:
-#   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
-#   stage: push
-#   script:
-#     - >
-#       aws deploy push
-#       --application-name MyHelsinkiServer
-#       --description "helsinki-places backend revision"
-#       --ignore-hidden-files
-#       --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
-#       --source backend/dist
-#     - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
+test-frontend:
+  image: cypress/base:14.15.0
+  stage: test
+  services:
+    - redis:latest
+  cache:
+    paths:
+      - frontend-react/node_modules
+      - frontend-react/.yarn
+    policy: pull
+  before_script:
+    - yarn global add pm2
+    - yarn global add serve
+    - pm2 start --name backend backend/dist/server.js
+    - cd frontend-react
+    - yarn install --cache-folder .yarn --frozen-lockfile
+  script:
+    - yarn add -D start-server-and-test
+    - yarn run test
 
-# deploy:
-#   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
-#   stage: deploy
-#   script:
-#     - >
-#       aws deploy create-deployment
-#       --application-name MyHelsinkiServer
-#       --deployment-config-name CodeDeployDefault.OneAtATime
-#       --deployment-group-name MyHelsinkiDeploymentGroup
-#       --file-exists-behavior OVERWRITE
-#       --s3-location bucket=$S3_BACKEND_LOCATION_NAME,key=helsinki-places-server.zip,bundleType=zip
-#     - >
-#       aws cloudfront create-invalidation
-#       --distribution-id $DISTRIBUTION_ID
-#       --paths "/*"
+revision-push:
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  stage: push
+  script:
+    - >
+      aws deploy push
+      --application-name MyHelsinkiServer
+      --description "helsinki-places backend revision"
+      --ignore-hidden-files
+      --s3-location $S3_BACKEND_LOCATION/helsinki-places-server.zip
+      --source backend/dist
+    - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
+
+deploy:
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  stage: deploy
+  script:
+    - >
+      aws deploy create-deployment
+      --application-name MyHelsinkiServer
+      --deployment-config-name CodeDeployDefault.OneAtATime
+      --deployment-group-name MyHelsinkiDeploymentGroup
+      --file-exists-behavior OVERWRITE
+      --s3-location bucket=$S3_BACKEND_LOCATION_NAME,key=helsinki-places-server.zip,bundleType=zip
+    - >
+      aws cloudfront create-invalidation
+      --distribution-id $DISTRIBUTION_ID
+      --paths "/*"
