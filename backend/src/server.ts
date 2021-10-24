@@ -7,7 +7,7 @@ import app from './app'
 dotenv.config()
 
 export const client = new Redis({
-  port: Number(process.env.PORT as string),
+  port: Number(process.env.REDIS_PORT as string),
   host: process.env.ENDPOINT as string,
 })
 

@@ -64,10 +64,11 @@ resource "aws_security_group" "redis" {
   vpc_id = module.vpc.vpc_id
 
   ingress {
-    from_port       = 6379
-    to_port         = 6379
-    protocol        = "tcp"
-    security_groups = [module.asg.ec2_sgs_id]
+    from_port = 6379
+    to_port   = 6379
+    protocol  = "tcp"
+    # cluster is not exposed to internet, only ec2 in vpc can connect
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

@@ -126,34 +126,35 @@ resource "aws_key_pair" "ssh" {
 }
 
 #### testing
-# resource "aws_instance" "test" {
-#   ami                         = data.aws_ami.ubuntu-image.id
-#   instance_type               = "t3.micro"
-#   subnet_id                   = var.vpc_subnets_id[0]
-#   key_name                    = aws_key_pair.ssh.key_name
-#   user_data                   = file("${path.module}/../../scripts/server_init.sh")
-#   associate_public_ip_address = true
+resource "aws_instance" "test" {
+  ami                         = data.aws_ami.ubuntu-image.id
+  instance_type               = "t3.micro"
+  subnet_id                   = var.vpc_subnets_id[0]
+  key_name                    = aws_key_pair.ssh.key_name
+  user_data                   = file("${path.module}/../../scripts/server_init.sh")
+  associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.ec2.name
 
-#   vpc_security_group_ids = [aws_security_group.test.id]
-#   tags                   = local.common_tags
-# }
+  vpc_security_group_ids = [aws_security_group.test.id]
+  tags                   = local.common_tags
+}
 
-# resource "aws_security_group" "test" {
-#   name        = "testing"
-#   description = "security group for ec2"
-#   vpc_id      = var.vpc_id
+resource "aws_security_group" "test" {
+  name        = "testing"
+  description = "security group for ec2"
+  vpc_id      = var.vpc_id
 
-#   ingress {
-#     cidr_blocks = ["0.0.0.0/0"]
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#   }
+  ingress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+  }
 
-#   egress {
-#     cidr_blocks = ["0.0.0.0/0"]
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = -1
-#   }
-# }
+  egress {
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+  }
+}

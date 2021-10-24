@@ -19,17 +19,17 @@ sudo apt-get -y install awscli
 sudo apt-get -y install jq
 
 port=$(aws ssm get-parameters --with-decryption \
---names "/production/server/redis/port" "/production/server/redis/endpoint" \
---region eu-north-1 | jq ".Parameters[0].Value")
+--names "/production/server/redis/port" \
+--region eu-north-1 | jq ".Parameters[0].Value" | xargs)
 
 endpoint=$(aws ssm get-parameters --with-decryption \
---names "/production/server/redis/port" "/production/server/redis/endpoint" \
---region eu-north-1 | jq ".Parameters[1].Value")
+--names "/production/server/redis/endpoint" \
+--region eu-north-1 | jq ".Parameters[0].Value" | xargs)
 
 [[ ! -d /home/ubuntu/app ]] && mkdir /home/ubuntu/app
 
 cat > /home/ubuntu/app/.env <<EOF
-PORT=${port}
+REDIS_PORT=${port}
 ENDPOINT=${endpoint}
 EOF
 
