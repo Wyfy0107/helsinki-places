@@ -30,7 +30,9 @@ const usePlaces = ({
         setLoading(false)
       })
       .catch(err => {
-        setError(err)
+        if (!axios.isCancel(err)) {
+          setError(err)
+        }
       })
 
     return () => {
