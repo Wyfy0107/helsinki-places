@@ -33,7 +33,7 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
 4. Produce the build: `./scripts/build.sh`
 5. To run or test the project without docker (see below for using docker), make sure a redis database is running at localhost at port 6379
 6. Run the backend: `cd backend && yarn run start:dev`
-7. Run the backend: `cd frontend-react && yarn run start`
+7. Run the frontend: `cd frontend-react && yarn run start`
 8. Run test backend: `cd backend && yarn run test`
 9. Run test frontend: Make sure both the redis database, backend server, and frontend are running.
    Then: `cd frontend-react && yarn run test:e2e`
@@ -45,7 +45,7 @@ To run the project in development with docker, then in the `redis.ts` file, line
 
 ## Deployments
 
-When pushing to project to Gitlab on master branch, a CI/CD pipeline will be triggered for building, testing, and finally deploy the project to AWS.
+When pushing the project to Gitlab on master branch, a CI/CD pipeline will be triggered for building, testing, and finally deploy the project to AWS.
 
 Before the CI/CD pipeline can run, you need to create the infrastructure first. The terraform code can be found in the **infrastructure** folder.
 
