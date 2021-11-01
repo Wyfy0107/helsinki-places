@@ -1,5 +1,4 @@
 #!/bin/bash
 
-pwd=$PWD
-
-cd $pwd/backend && yarn run test
+docker run -dp 6379:6379 --rm redis
+cd $PWD/backend && yarn run test

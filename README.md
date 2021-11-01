@@ -30,11 +30,22 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
 2. Allow script execution: `cd helsinki-places && chmod 700 scripts/*`
    Make sure to run the scripts from the project root directory:
 3. Install dependencies: `./scripts/install.sh`
-4. Run the project: `./scripts/run.sh`
-5. Run test backend: `./scripts/backend-test.sh`
-6. Run test frontend: `./scripts/frontend-test.sh`
+4. Produce the build: `./scripts/build.sh`
+5. To run or test the project without docker (see below for using docker), make sure a redis database is running and create a .env file in the backend folder with the following variables:
+
+   - REDIS_PORT
+   - ENDPOINT
+
+6. Run the project: `./scripts/run.sh`
+7. Run test backend: `cd backend && yarn run test`
+8. Run test frontend: `cd frontend-react && yarn run test:e2e`
 
 To run the project in development with docker:
 
 1. `docker-compose build`
 2. `docker-compose up`
+
+To run test with docker:
+
+1. Backend: `cd backend && yarn run test`
+2. Frontend: `cd frontend-react && yarn run test`
