@@ -38,7 +38,7 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
 9. Run test frontend: Make sure both the redis database, backend server, and frontend are running.
    Then: `cd frontend-react && yarn run test:e2e`
 
-To run the project in development with docker:
+To run the project in development with docker, then in the `redis.ts` file, line 12, replace the value `localhost` with `redis`. Then run:
 
 1. `docker-compose build`
 2. `docker-compose up`
