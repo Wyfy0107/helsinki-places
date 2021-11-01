@@ -7,6 +7,9 @@ stages:
   - deploy
 
 install-backend:
+  only:
+    refs:
+      - master
   stage: build
   cache:
     paths:
@@ -25,6 +28,9 @@ install-backend:
     expire_in: 15 minute
 
 install-frontend:
+  only:
+    refs:
+      - master
   stage: build
   cache:
     paths:
@@ -41,6 +47,9 @@ install-frontend:
     expire_in: 15 minute
 
 test-backend:
+  only:
+    refs:
+      - master
   stage: test
   services:
     - redis:latest
@@ -57,6 +66,9 @@ test-backend:
     - yarn run test
 
 test-frontend:
+  only:
+    refs:
+      - master
   image: cypress/base:14.15.0
   stage: test
   services:
@@ -77,6 +89,9 @@ test-frontend:
     - yarn run test
 
 revision-push:
+  only:
+    refs:
+      - master
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   stage: push
   script:
@@ -90,6 +105,9 @@ revision-push:
     - aws s3 sync frontend-react/build $S3_FRONTEND_LOCATION
 
 deploy:
+  only:
+    refs:
+      - master
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   stage: deploy
   script:
