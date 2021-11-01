@@ -27,10 +27,12 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
 ## Instructions
 
 1. Clone this project: `git clone https://gitlab.com/nguyenduy010798/helsinki-places.git`
-2. Install dependencies: `cd helsinki-places && chmod 700 scripts/install.sh && ./scripts/install.sh`
-3. Run the project: `./scripts/run.sh`
-4. Run test backend: `./scripts/backend-test.sh`
-5. Run test frontend: `./scripts/frontend-test.sh`
+2. Allow script execution: `cd helsinki-places && chmod 700 scripts/*`
+   Make sure to run the scripts from the project root directory:
+3. Install dependencies: `./scripts/install.sh`
+4. Run the project: `./scripts/run.sh`
+5. Run test backend: `./scripts/backend-test.sh`
+6. Run test frontend: `./scripts/frontend-test.sh`
 
 To run the project in development with docker:
 
