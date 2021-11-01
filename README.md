@@ -35,7 +35,7 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
 6. Run the backend: `cd backend && yarn run start:dev`
 7. Run the backend: `cd frontend-react && yarn run start`
 8. Run test backend: `cd backend && yarn run test`
-9. Run test frontend: Make sure both the redis database and backend server are running.
+9. Run test frontend: Make sure both the redis database, backend server, and frontend are running.
    Then: `cd frontend-react && yarn run test:e2e`
 
 To run the project in development with docker:
@@ -69,6 +69,7 @@ To deploy the project, you need to have:
    - AmazonRoute53FullAccess
 
 2. Create these env for Gitlab CI/CD:
+
    - AWS_ACCESS_KEY_ID: your aws access key ID, can be retrieve in IAM console
    - AWS_SECRET_ACCESS_KEY: your aws secret access key
    - DISTRIBUTION_ID: the Cloudfront distribution ID, retrieve from Cloudfront console
