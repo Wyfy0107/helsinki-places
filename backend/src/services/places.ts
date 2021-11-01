@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { InternalServerError } from '../util/error'
 import { Place, PlacesResponse } from '../types'
-import { client } from '../server'
+import { client } from '../redis'
 
 const getAll = async (
   page?: number,
