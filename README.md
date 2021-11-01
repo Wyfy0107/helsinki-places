@@ -43,7 +43,37 @@ To run the project in development with docker:
 1. `docker-compose build`
 2. `docker-compose up`
 
-To run test with docker:
+## Deployments
 
-1. Backend: `cd backend && yarn run test`
-2. Frontend: `cd frontend-react && yarn run test`
+When pushing to project to Gitlab on master branch, a CI/CD pipeline will be triggered for building, testing, and finally deploy the project to AWS.
+
+Before the CI/CD pipeline can run, you need to create the infrastructure first. The terraform code can be found in the **infrastructure** folder.
+
+1. `cd infrastructure && terraform init`
+2. `terraform apply` This will ask for some variables, you can find the description of the input variables from `variables.tf` file
+3. After the infrastructure is successfully created, then we can trigger the CI/CD pipeline
+
+To deploy the project, you need to have:
+
+1. An AWS account or IAM user with these permissions:
+
+   - AmazonEC2FullAccess
+   - IAMFullAccess
+   - AmazonElastiCacheFullAccess
+   - AmazonS3FullAccess
+   - AWSCodeDeployFullAccess
+   - CloudFrontFullAccess
+   - AmazonSSMFullAccess
+   - AmazonVPCFullAccess
+   - AWSKeyManagementServicePowerUser
+   - AmazonRoute53FullAccess
+
+2. Create these env for Gitlab CI/CD:
+   - AWS_ACCESS_KEY_ID: your aws access key ID, can be retrieve in IAM console
+   - AWS_SECRET_ACCESS_KEY: your aws secret access key
+   - DISTRIBUTION_ID: the Cloudfront distribution ID, retrieve from Cloudfront console
+   - S3_BACKEND_LOCATION: the location of the s3 bucket that will store your backend code revision in s3 format: `s3://bucket-name`
+   - S3_BACKEND_LOCATION_NAME: the name of the backend bucket
+   - S3_FRONTEND_LOCATION: the location of the s3 bucket that will store your frontend static files in s3 format: `s3://bucket-name`
+
+:exclamation: If the CI/CD pipeline fails at step `test-backend`. Then in the `redis.ts` file, line 12, replace the value `localhost` with `redis`
