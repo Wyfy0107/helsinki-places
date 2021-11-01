@@ -36,9 +36,11 @@ The infrastructure for the entire project is built upon AWS and use Terraform to
    - REDIS_PORT
    - ENDPOINT
 
-6. Run the project: `./scripts/run.sh`
+6. Run the project: `./scripts/run.sh` and visit **localhost:3000**
 7. Run test backend: `cd backend && yarn run test`
-8. Run test frontend: `cd frontend-react && yarn run test:e2e`
+8. Run test frontend: Make sure both the redis database and backend server are running.
+   To run backend and frontend: `./scripts/run.sh`
+   Then: `cd frontend-react && yarn run test:e2e`
 
 To run the project in development with docker:
 
