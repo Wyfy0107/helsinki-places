@@ -9,12 +9,14 @@ let redisHost = process.env.ENDPOINT as string
 
 if (isTestEnv) {
   redisPort = 6379
+  // change this to 'redis' if running test in CI environment
   redisHost = 'localhost'
 }
 
 if (!isProd && !isTestEnv) {
   // dev environment
   redisPort = 6379
+  // change this to 'redis' if using docker
   redisHost = 'localhost'
 }
 
