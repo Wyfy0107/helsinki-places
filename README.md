@@ -23,3 +23,16 @@ A React Web Application that handles data display. There are two view modes: tab
 The infrastructure for the entire project is built upon AWS and use Terraform to manage the AWS resources. An overview design of the architecture is shown below:
 
 ![Diagram](AWS-Diagram.png)
+
+## Instructions
+
+1. Clone this project: `git clone https://gitlab.com/nguyenduy010798/helsinki-places.git`
+2. Install dependencies: `cd helsinki-places && chmod 700 scripts/install.sh && ./scripts/install.sh`
+3. Run the project: `./scripts/run.sh`
+4. Run test backend: `./scripts/backend-test.sh`
+5. Run test frontend: `./scripts/frontend-test.sh`
+
+To run the project in development with docker:
+
+1. `docker-compose build`
+2. `docker-compose up`
