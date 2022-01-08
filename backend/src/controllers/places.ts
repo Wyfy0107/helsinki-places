@@ -13,13 +13,11 @@ export const getAllPlaces = async (
 
   try {
     const all = await PlacesService.getAll(page, limit)
-    res.json(all)
+    res.locals.data = all
+    next()
   } catch (error) {
     next(new InternalServerError())
   }
-
-  // cache logic
-  //
 }
 
 export const getOnePlace = async (
@@ -31,7 +29,8 @@ export const getOnePlace = async (
 
   try {
     const place = await PlacesService.getById(id)
-    res.json(place)
+    res.locals.data = place
+    next()
   } catch (error) {
     next(new InternalServerError())
   }
