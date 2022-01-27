@@ -8,8 +8,7 @@ import CustomPopup from '../components/Popup'
 import usePlaces from '../hooks/usePlaces'
 
 const Map = ReactMapboxGl({
-  accessToken:
-    'pk.eyJ1Ijoid3lmeSIsImEiOiJja3V5YWFmY2czNzlkMm9xcjdqYXF0NGpjIn0.Fk-ITa0-NMXxwoonkkgQkA',
+  accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
 })
 
 const helsinkiCoordinates: [number, number] = [24.945831, 60.192059]
