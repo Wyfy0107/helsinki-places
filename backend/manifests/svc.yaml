@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: helsinki-places-api-svc
+  namespace: projects
+spec:
+  selector:
+    app: helsinki-places-api
+  type: ClusterIP
+  ports:
+    - name: http-helsinki-places-api
+      port: 5000
+      targetPort: 5000
