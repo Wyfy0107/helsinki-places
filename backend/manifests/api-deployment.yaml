@@ -21,8 +21,8 @@ spec:
         - name: NODE_ENV
           value: production
         - name: REDIS_PORT
-          values: 6379
+          value: 6379
         - name: ENDPOINT
-          values: redis-svc
+          value: redis-svc
         - name: PORT
-          values: 5000
+          value: 5000
