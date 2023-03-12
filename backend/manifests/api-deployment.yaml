@@ -18,11 +18,11 @@ spec:
           image: wyfy/helsinki-places-api:1.0.0
           imagePullPolicy: IfNotPresent
       env:
-        - name: NODE_ENV
-          value: production
-        - name: REDIS_PORT
-          values: 6379
-        - name: ENDPOINT
-          values: redis-svc
-        - name: PORT
-          values: 5000
+      - name: NODE_ENV
+        value: production
+      - name: REDIS_PORT
+        values: 6379
+      - name: ENDPOINT
+        values: redis-svc
+      - name: PORT
+        values: 5000

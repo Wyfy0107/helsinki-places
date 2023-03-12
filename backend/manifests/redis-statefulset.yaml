@@ -17,7 +17,7 @@ spec:
       initContainers:
         - name: init-redis
           image: redis:latest
-          imagePullPolicy: ifNotPresent
+          imagePullPolicy: IfNotPresent
           command:
             - bash
             - '-c'
