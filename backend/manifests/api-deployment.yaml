@@ -16,7 +16,7 @@ spec:
       containers:
         - name: helsinki-places-api
           image: wyfy/helsinki-places-api:1.0.0
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: NODE_ENV
               value: production
