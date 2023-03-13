@@ -12,7 +12,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(`${prefix}/places`, placesRouter)
+app.use(`/`, placesRouter)
 app.use(`${prefix}/health-check`, healthCheckRouter)
 app.use(errorHandler)
 
