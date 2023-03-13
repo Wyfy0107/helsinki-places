@@ -13,8 +13,7 @@ export const getAllPlaces = async (
 
   try {
     const all = await PlacesService.getAll(page, limit)
-    res.locals.data = all
-    next()
+    res.json(all)
   } catch (error) {
     next(new InternalServerError())
   }
@@ -29,7 +28,7 @@ export const getOnePlace = async (
 
   try {
     const place = await PlacesService.getById(id)
-    res.locals.data = place
+    res.json(place)
     next()
   } catch (error) {
     next(new InternalServerError())
