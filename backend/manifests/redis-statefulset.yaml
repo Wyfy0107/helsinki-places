@@ -40,7 +40,7 @@ spec:
       containers:
         - name: redis-server
           image: redis:latest
-          imagePullPolicy: ifNotPresent
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 6379
               name: redis
