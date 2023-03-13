@@ -1,28 +1,8 @@
 import Redis from 'ioredis'
 
-import { isProd } from './app'
-
-const isTestEnv = process.env.NODE_ENV === 'test'
-
-let redisPort = Number(process.env.REDIS_PORT as string)
-let redisHost = process.env.ENDPOINT as string
-
-if (isTestEnv) {
-  redisPort = 6379
-  // change this to 'redis' if running test in CI environment
-  redisHost = 'localhost'
-}
-
-if (!isProd && !isTestEnv) {
-  // dev environment
-  redisPort = 6379
-  // change this to 'redis' if using docker
-  redisHost = 'localhost'
-}
-
 export const client = new Redis({
-  port: redisPort,
-  host: redisHost,
+  port: Number(process.env.REDIS_PORT as string),
+  host: process.env.ENDPOINT as string,
 })
 
 client.on('error', err => {
